@@ -21,6 +21,7 @@
     "react-native-screens": "^3.18.2",
     "react-native-splash-screen": "^3.3.0",
     "react-redux": "^8.0.5",
+    "reactotron-react-native": "^5.0.3",
     "realm": "^11.3.1",
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
