@@ -6,5 +6,6 @@ export const dark: ITheme = {
   primaryBackground: '#111111',
   secundaryBackground: '#2A2A2A',
   primaryFont: '#fff',
-  secundaryFont: '#cfcfcf'
+  secundaryFont: '#cfcfcf',
+  white: '#f2f2f2'
 };

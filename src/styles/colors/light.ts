@@ -6,5 +6,6 @@ export const light: ITheme = {
   primaryBackground: '#f2f2f2',
   secundaryBackground: '#dddddd',
   primaryFont: '#2f2f2f',
-  secundaryFont: '#424242'
+  secundaryFont: '#424242',
+  white: '#f2f2f2'
 };
