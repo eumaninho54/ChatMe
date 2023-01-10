@@ -1,6 +1,10 @@
-import { IColor } from './types';
+import { ITheme } from './types';
 
-export const dark: Record<IColor, string> = {
-  primaryLight: '#6940F5',
-  primaryDark: '#4823CC'
+export const dark: ITheme = {
+  primaryColor: '#6940F5',
+  secundaryColor: '#4823CC',
+  primaryBackground: '#111111',
+  secundaryBackground: '#2A2A2A',
+  primaryFont: '#fff',
+  secundaryFont: '#cfcfcf'
 };
