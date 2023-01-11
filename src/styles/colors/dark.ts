@@ -7,5 +7,6 @@ export const dark: ITheme = {
   secundaryBackground: '#2A2A2A',
   primaryFont: '#fff',
   secundaryFont: '#cfcfcf',
-  white: '#f2f2f2'
+  white: '#f2f2f2',
+  focused: '#1994FF'
 };
