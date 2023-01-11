@@ -1,5 +1,5 @@
-import React, { forwardRef, memo, useContext, useRef, useState } from 'react';
-import { Animated, TextInput, TouchableOpacity } from 'react-native';
+import React, { forwardRef, memo, useContext, useEffect, useRef, useState } from 'react';
+import { Animated, TextInput } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useCombinedRefs } from '../../hooks/useCombineRefs';
 import { ITheme } from '../../styles/colors/types';
@@ -18,12 +18,17 @@ const Input = forwardRef<TextInput, IProps>((props, ref) => {
   const theme = useContext<ITheme>(ThemeContext)
   const refInput = useRef<TextInput>()
   const combinedRef = useCombinedRefs<TextInput>(ref, refInput)
+  const [borderFocused, setBorderFocused] = useState(theme.secundaryBackground)
 
   const setValueTop = (focus: boolean) => {
     Animated.spring(valueTop, {
       useNativeDriver: false,
       toValue: focus ? 4 : props.value ? 4 : 16
     }).start()
+
+    focus 
+    ? setBorderFocused(theme.focused)
+    : setBorderFocused(theme.secundaryBackground)
   }
 
   const fontSize = valueTop.interpolate({
@@ -34,8 +39,17 @@ const Input = forwardRef<TextInput, IProps>((props, ref) => {
     ]
   })
 
+  useEffect(() => {
+    Animated.spring(valueTop, {
+      useNativeDriver: false,
+      toValue: combinedRef.current?.isFocused() ? 4 : props.value ? 4 : 16
+    }).start()
+  }, [props.value])
+  
+
   return (
     <Wrapper
+      borderColor={borderFocused}
       activeOpacity={1}
       onPress={() => combinedRef.current?.focus()}>
       <Placeholder
@@ -52,6 +66,7 @@ const Input = forwardRef<TextInput, IProps>((props, ref) => {
         onBlur={() => setValueTop(false)}
         ref={combinedRef}
         key={props.key}
+        textContentType={'oneTimeCode'}
         value={props.value}
         onChangeText={props.onChangeValue}
         placeholderTextColor={theme.secundaryFont}
@@ -67,7 +82,8 @@ const Input = forwardRef<TextInput, IProps>((props, ref) => {
           <Icon
             name={input.iconName}
             size='normal_20'
-            color='primaryFont' />
+            color='primaryFont' 
+            family='Ionicons'/>
         </IconWrapper>
         : null
       }

@@ -4,6 +4,8 @@ import { ITheme } from '../../styles/colors/types';
 
 
 export const Wrapper = styled.TouchableOpacity`
+  border-color: ${({borderColor}: {theme: ITheme, borderColor: string}) => 
+borderColor};
   background-color: ${({theme}: {theme: ITheme}) => theme.secundaryBackground};
   width: 100%;
   height: 55px;
@@ -12,6 +14,7 @@ export const Wrapper = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  border-width: 1px;
 `;
 
 export const Placeholder = styled(Animated.View)`
