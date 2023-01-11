@@ -7,6 +7,8 @@
     "Login": "Login",
     "Forgot password?": "Forgot password?",
     "Don't have an account?": "Don't have an account?",
-    "Register!": "Register!"
+    "Register!": "Register!",
+    "Confirm Password": "Confirm Password",
+    "SignUp": "SignUp"
   }
 }

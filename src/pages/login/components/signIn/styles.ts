@@ -1,12 +1,6 @@
-import { ITheme } from './../../../../styles/colors/types';
 import styled from "styled-components/native";
 import { ISignInStyles } from "../../types";
-import {SafeAreaView as safeAreaView} from 'react-native-safe-area-context';
 
-export const SafeAreaView = styled(safeAreaView)`
-  flex: 1;
-  background-color: ${({theme}: {theme: ITheme}) => theme.primaryBackground}; 
-`
 
 export const Wrapper = styled.View`
   flex: 1;
@@ -14,10 +8,6 @@ export const Wrapper = styled.View`
   background-color: ${(props: ISignInStyles) => props.theme.primaryBackground };  
   align-items: center;
   justify-content: center;
-`
-
-export const Logo = styled.Image`
-  height: 150px;
 `
 
 export const Titles = styled.View`
