@@ -16,6 +16,8 @@ const SignUp: React.FC = () => {
   const { t, i18n } = useTranslation()
   const [state, setState] = useState('')
   const { navigate } = useNavigation<SignInScreenNavigation>()
+  const onSignUp = () => {
+  }
 
   return (
     <SafeArea color='primaryBackground'>
@@ -77,6 +79,7 @@ const SignUp: React.FC = () => {
 
         <ButtonWrapper>
           <Button text={t('SignUp')} type='solid' />
+          <Button onPress={onSignUp} text={t('SignUp')} type='solid' />
         </ButtonWrapper>
 
       </Wrapper>

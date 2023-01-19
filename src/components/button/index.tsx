@@ -14,6 +14,7 @@ const Button = forwardRef<TouchableOpacity, IProps>((props, ref) => {
 
   return (
     <ButtonPress
+      onPress={() => props.onPress()}
       background={button.background} 
       ref={ref}>
       <Text

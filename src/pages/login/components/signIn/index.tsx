@@ -17,6 +17,14 @@ const SignIn: React.FC = () => {
   const [state2, setState2] = useState('TESTANDO')
   const { navigate } = useNavigation<SignInScreenNavigation>()
 
+  const onSignIn = () => {
+
+  }
+
+  const onForgotPassword  = () => {
+
+  }
+
   return (
     <SafeArea color='primaryBackground'>
       <Wrapper>
@@ -57,8 +65,8 @@ const SignIn: React.FC = () => {
         </InputWrapper>
 
         <ButtonWrapper>
-          <Button text={t('Login')} type='solid' />
-          <Button text={t('Forgot password?')} type='clean' />
+          <Button onPress={onSignIn} text={t('Login')} type='solid' />
+          <Button onPress={onForgotPassword} text={t('Forgot password?')} type='clean' />
         </ButtonWrapper>
       </Wrapper>
 
