@@ -5,6 +5,8 @@ import { StatusBar, useColorScheme } from 'react-native';
 import darkMode from './styles/colors';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import './languages/i18n'
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 if (__DEV__) {
   import('./config/reactotron') // Start reactotron in dev
@@ -18,12 +20,15 @@ const App: React.FC = () => {
     : darkMode['light']
 
   return (
-    <SafeAreaProvider>
-      <StatusBar animated backgroundColor={theme.primaryColor} />
-      <ThemeProvider theme={theme}>
-        <Routes />
-      </ThemeProvider>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <StatusBar animated backgroundColor={theme.primaryColor} />
+        <ThemeProvider theme={theme}>
+          <Routes />
+        </ThemeProvider>
+      </SafeAreaProvider>
+
+    </Provider>
   )
 }
 
