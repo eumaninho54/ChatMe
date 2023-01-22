@@ -19,3 +19,7 @@ export type INewUser = {
   auth: boolean
   token: string
 }
+
+export type IError = {
+  message: string
+}

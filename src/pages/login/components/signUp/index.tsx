@@ -10,13 +10,42 @@ import Button from '../../../../components/button';
 import Icon from '../../../../components/icon';
 import { useNavigation } from '@react-navigation/native';
 import { SignInScreenNavigation } from '../../../../routes/types';
+import { signUp } from '../../../../store/user/thunks/signUp';
+import { Alert } from 'react-native';
+import { useAppDispatch } from '../../../../store/hooks';
+import { IError } from '../../../../services/api/types';
 
 
 const SignUp: React.FC = () => {
   const { t, i18n } = useTranslation()
-  const [state, setState] = useState('')
   const { navigate } = useNavigation<SignInScreenNavigation>()
-  const onSignUp = () => {
+  const dispatch = useAppDispatch()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+
+  const verifyPassword = () => {
+    if (password != confirmPassword) {
+      setPassword('')
+      setConfirmPassword('')
+      Alert.alert('Error', t('Different passwords') as string)
+      return false
+    }
+    if(password.length < 8){
+      setPassword('')
+      setConfirmPassword('')
+      Alert.alert('Error', t('Password must be at least 8 characters long') as string)
+      return false
+    }
+    return true
+  }
+
+  const onSignUp = async () => {
+    if (verifyPassword()) {
+      await dispatch(signUp({ email, password }))
+        .unwrap()
+        .catch((err: IError) => Alert.alert(t('Error'), t(err.message) as string))
+    }
   }
 
   return (
@@ -57,28 +86,27 @@ const SignUp: React.FC = () => {
 
         <InputWrapper>
           <Input
-            value={state}
-            onChangeValue={(value) => setState(value)}
+            value={email}
+            onChangeValue={setEmail}
             placeholder={t('Email')}
             type={'email'} />
 
           <PasswordWrapper>
             <Input
-              value={state}
-              onChangeValue={(value) => setState(value)}
+              value={password}
+              onChangeValue={setPassword}
               placeholder={t('Password')}
               type={'password'} />
 
             <Input
-              value={state}
-              onChangeValue={(value) => setState(value)}
+              value={confirmPassword}
+              onChangeValue={setConfirmPassword}
               placeholder={t('Confirm Password')}
               type={'password'} />
           </PasswordWrapper>
         </InputWrapper>
 
         <ButtonWrapper>
-          <Button text={t('SignUp')} type='solid' />
           <Button onPress={onSignUp} text={t('SignUp')} type='solid' />
         </ButtonWrapper>
 

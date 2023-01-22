@@ -9,6 +9,11 @@
     "Don't have an account?": "Don't have an account?",
     "Register!": "Register!",
     "Confirm Password": "Confirm Password",
-    "SignUp": "SignUp"
+    "SignUp": "SignUp",
+    "Error": "Error",
+    "Invalid data": "Invalid data",
+    "Email already used": "Email already used",
+    "Different passwords": "Different passwords",
+    "Password must be at least 8 characters long":"Password must be at least 8 characters long"
   }
 }

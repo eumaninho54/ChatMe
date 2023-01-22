@@ -9,6 +9,11 @@
     "Don't have an account?": "Não tem uma conta?",
     "Register!": "Registre-se!",
     "Confirm Password": "Confirme a senha",
-    "SignUp": "Cadastrar"
+    "SignUp": "Cadastrar",
+    "Error": "Erro",
+    "Invalid data": "Dados inválidos",
+    "Email already used": "Email já utilizado",
+    "Different passwords": "Senhas diferentes",
+    "Password must be at least 8 characters long": "Senha deve ter pelo menos 8 digitos"
   }
 }

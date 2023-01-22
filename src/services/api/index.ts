@@ -1,9 +1,10 @@
 import axios, { AxiosError } from 'axios';
-import { reactotron } from '../../config/reactotron';
 import { GetUserProps, IGetUser, INewUser, NewUserProps } from './types';
+import { BASE_URL } from '@env'
+
 
 export class ApiService {
-  private baseUrl = 'http://192.168.0.100:3333';
+  private baseUrl = BASE_URL;
 
   constructor(
     private _token?: string
