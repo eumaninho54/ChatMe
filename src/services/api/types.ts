@@ -22,6 +22,13 @@ export type INewUser = {
   token: string
 }
 
+export type IAuthUser = {
+  username: string
+  email: string
+  auth: boolean
+  token: string
+}
+
 export type IError = {
   message: string
 }
