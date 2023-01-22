@@ -1,4 +1,3 @@
-import { ISignIn } from './types/index';
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
 import { userAsyncBuilder } from './thunks';

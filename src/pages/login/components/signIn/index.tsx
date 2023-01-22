@@ -9,29 +9,47 @@ import { SignInScreenNavigation } from '../../../../routes/types';
 import { useNavigation } from '@react-navigation/native';
 import Logo from '../../../../components/logo';
 import SafeArea from '../../../../components/safeArea';
+import { useAppDispatch } from '../../../../store/hooks';
+import { Alert } from 'react-native';
+import { signUp } from '../../../../store/user/thunks/signUp';
+import { IError } from '../../../../services/api/types';
 
 
 const SignIn: React.FC = () => {
   const { t, i18n } = useTranslation()
-  const [state, setState] = useState('TESTANDO')
-  const [state2, setState2] = useState('TESTANDO')
   const { navigate } = useNavigation<SignInScreenNavigation>()
+  const dispatch = useAppDispatch()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const onSignIn = () => {
-
+  const verifyPassword = () => {
+    if(password.length < 8){
+      setPassword('')
+      Alert.alert('Error', t('Password must be at least 8 characters long') as string)
+      return false
+    }
+    return true
   }
 
-  const onForgotPassword  = () => {
+  const onSignIn = async() => {
+    if(verifyPassword()){
+      await dispatch(signUp({ email, password }))
+        .unwrap()
+        .catch((err: IError) => Alert.alert(t('Error'), t(err.message) as string))
+    }
+  }
+
+  const onForgotPassword = () => {
 
   }
 
   return (
     <SafeArea color='primaryBackground'>
       <Wrapper>
-        <Logo 
-          resizeMode='contain' 
-          source={logo} 
-          size={'giant_150'}/>
+        <Logo
+          resizeMode='contain'
+          source={logo}
+          size={'giant_150'} />
 
         <Titles>
           <Title>
@@ -53,13 +71,13 @@ const SignIn: React.FC = () => {
 
         <InputWrapper>
           <Input
-            value={state}
-            onChangeValue={(value) => setState(value)}
+            value={email}
+            onChangeValue={setEmail}
             placeholder={t('Email')}
             type={'email'} />
           <Input
-            value={state2}
-            onChangeValue={(value) => setState2(value)}
+            value={password}
+            onChangeValue={setPassword}
             placeholder={t('Password')}
             type={'password'} />
         </InputWrapper>
@@ -76,7 +94,7 @@ const SignIn: React.FC = () => {
           color={'secundaryFont'}
           size={'small_14'}
           weight={'regular'} />
-        <Register onPress={() => {navigate('signUp')}}>
+        <Register onPress={() => { navigate('signUp') }}>
           <Text
             text={t('Register!')}
             color={'primaryColor'}
