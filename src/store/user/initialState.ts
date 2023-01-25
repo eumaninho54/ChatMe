@@ -4,5 +4,6 @@ export const initialState: IUser = {
   username: '',
   email: '',  
   auth: false,
-  token: ''
+  accessToken: '',
+  refreshToken: ''
 }

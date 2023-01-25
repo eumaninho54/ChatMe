@@ -8,8 +8,8 @@ import axios from 'axios';
 
 export const authUser = createAsyncThunk('authUser', async () => {
   try {
-    const token = await AsyncStorage.getItem('token')
-    const req = await new ApiService(token).authUser()
+    const refreshToken = await AsyncStorage.getItem('refreshToken')
+    const req = await new ApiService(refreshToken).authUser()
 
     return req
   } 

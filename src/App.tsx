@@ -7,6 +7,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import './languages/i18n'
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { authUser } from './store/user/thunks/authUser';
+
 
 if (__DEV__) {
   import('./config/reactotron') // Start reactotron in dev
@@ -18,6 +20,10 @@ const App: React.FC = () => {
   const theme = deviceTheme != null && deviceTheme != undefined
     ? darkMode[deviceTheme]
     : darkMode['light']
+
+  useEffect(() => {
+    store.dispatch(authUser())
+  }, [])
 
   return (
     <Provider store={store}>

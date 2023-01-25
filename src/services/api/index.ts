@@ -7,7 +7,8 @@ export class ApiService {
   private baseUrl = BASE_URL;
 
   constructor(
-    private _token?: string | null
+    private _refreshToken?: string | null,
+    private _accessToken?: string | null
   ){}
 
   async authUser(){
@@ -15,7 +16,9 @@ export class ApiService {
       .request<IAuthUser>({
         method: 'get',
         url: this.baseUrl + '/auth',
-        headers: { "x-access-token": this._token }
+        headers: { 
+          "x-refresh-token": this._refreshToken
+        }
       })
       .then((res) => res.data)
       .catch((err: AxiosError) => Promise.reject(err))

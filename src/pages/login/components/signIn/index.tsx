@@ -13,6 +13,7 @@ import { useAppDispatch } from '../../../../store/hooks';
 import { Alert } from 'react-native';
 import { signUp } from '../../../../store/user/thunks/signUp';
 import { IError } from '../../../../services/api/types';
+import { signIn } from '../../../../store/user/thunks/signIn';
 
 
 const SignIn: React.FC = () => {
@@ -33,7 +34,7 @@ const SignIn: React.FC = () => {
 
   const onSignIn = async() => {
     if(verifyPassword()){
-      await dispatch(signUp({ email, password }))
+      await dispatch(signIn({ email, password }))
         .unwrap()
         .catch((err: IError) => Alert.alert(t('Error'), t(err.message) as string))
     }

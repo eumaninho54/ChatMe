@@ -7,7 +7,8 @@ export type IGetUser = {
   username: string
   email: string
   auth: boolean
-  token: string
+  accessToken: string
+  refreshToken: string
 }
 
 export type NewUserProps = {
@@ -19,14 +20,16 @@ export type INewUser = {
   username: string
   email: string
   auth: boolean
-  token: string
+  accessToken: string
+  refreshToken: string
 }
 
 export type IAuthUser = {
   username: string
   email: string
   auth: boolean
-  token: string
+  accessToken: string
+  refreshToken: string
 }
 
 export type IError = {

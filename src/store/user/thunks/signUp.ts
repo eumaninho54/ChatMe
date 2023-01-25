@@ -10,7 +10,7 @@ import axios from 'axios';
 export const signUp = createAsyncThunk('signUp', async (props: NewUserProps) => {
   try {
     const req = await new ApiService().newUser(props)
-    AsyncStorage.setItem('token', req.token)
+    AsyncStorage.setItem('refreshToken', req.refreshToken)
 
     return req
   } 
