@@ -1,12 +1,10 @@
-import {
-  NativeStackNavigationProp,
-  NativeStackScreenProps,
-} from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // Type Stack
 export type NativeStackParamList = {
   signIn: undefined;
   signUp: undefined;
+  tab: undefined
 };
 
 // Type Navigation
