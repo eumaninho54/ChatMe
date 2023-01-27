@@ -69,7 +69,7 @@ const SignUp: React.FC = () => {
         <Titles>
           <Title>
             <Text
-              text={t('Welcome to ChatMe!')}
+              text={t('Welcome to DevChat!')}
               color='primaryFont'
               size='big_18'
               weight='semibold' />
