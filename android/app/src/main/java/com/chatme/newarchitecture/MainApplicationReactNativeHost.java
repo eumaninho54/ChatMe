@@ -1,4 +1,4 @@
-package com.chatme.newarchitecture;
+package com.devchat.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.chatme.BuildConfig;
-import com.chatme.newarchitecture.components.MainComponentsRegistry;
-import com.chatme.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.devchat.BuildConfig;
+import com.devchat.newarchitecture.components.MainComponentsRegistry;
+import com.devchat.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

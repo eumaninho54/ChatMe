@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "ChatMe.app"
-               BlueprintName = "ChatMe"
-               ReferencedContainer = "container:ChatMe.xcodeproj">
+               BuildableName = "DevChat.app"
+               BlueprintName = "DevChat"
+               ReferencedContainer = "container:DevChat.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ChatMeTests.xctest"
-               BlueprintName = "ChatMeTests"
-               ReferencedContainer = "container:ChatMe.xcodeproj">
+               BuildableName = "DevChatTests.xctest"
+               BlueprintName = "DevChatTests"
+               ReferencedContainer = "container:DevChat.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ChatMe.app"
-            BlueprintName = "ChatMe"
-            ReferencedContainer = "container:ChatMe.xcodeproj">
+            BuildableName = "DevChat.app"
+            BlueprintName = "DevChat"
+            ReferencedContainer = "container:DevChat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ChatMe.app"
-            BlueprintName = "ChatMe"
-            ReferencedContainer = "container:ChatMe.xcodeproj">
+            BuildableName = "DevChat.app"
+            BlueprintName = "DevChat"
+            ReferencedContainer = "container:DevChat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
