@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { ButtonWrapper, HaveAccount, InputWrapper, Register, Title, Titles, Wrapper } from './styles';
 import Text from '../../../../components/text';
 import { useTranslation } from 'react-i18next';
@@ -8,17 +8,20 @@ import Button from '../../../../components/button';
 import { SignInScreenNavigation } from '../../../../routes/types';
 import { useNavigation } from '@react-navigation/native';
 import Logo from '../../../../components/logo';
-import SafeArea from '../../../../components/safeArea';
 import { useAppDispatch } from '../../../../store/hooks';
 import { Alert } from 'react-native';
 import { signUp } from '../../../../store/user/thunks/signUp';
 import { IError } from '../../../../services/api/types';
 import { signIn } from '../../../../store/user/thunks/signIn';
+import { ITheme } from '../../../../styles/colors/types';
+import { ThemeContext } from 'styled-components/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const SignIn: React.FC = () => {
   const { t, i18n } = useTranslation()
   const { navigate } = useNavigation<SignInScreenNavigation>()
+  const theme = useContext<ITheme>(ThemeContext)
   const dispatch = useAppDispatch()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -45,7 +48,8 @@ const SignIn: React.FC = () => {
   }
 
   return (
-    <SafeArea color='primaryBackground'>
+    <SafeAreaView 
+      style={{ backgroundColor: theme.primaryLoginBackground, flex: 1 }}>
       <Wrapper>
         <Logo
           resizeMode='contain'
@@ -103,7 +107,7 @@ const SignIn: React.FC = () => {
             weight={'bold'} />
         </Register>
       </HaveAccount>
-    </SafeArea>
+    </SafeAreaView>
   )
 }
 
