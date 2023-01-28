@@ -2,6 +2,7 @@ import { IColor } from "../../../styles/colors/types"
 
 export type OnChangeValue = ((value: string) => void) | ((value: string) => {})
 export type IInputTypeKey =  'text' | 'number' | 'password' | 'email' 
+export type IIconNameKey = 'search'
 
 export type IProps = {
   value: string
@@ -12,6 +13,8 @@ export type IProps = {
   type?: IInputTypeKey
   ref?: any
   key?: string
+  iconLeft?: IIconNameKey
+  isLogin?: boolean
 }
 
 export type IStyles = {

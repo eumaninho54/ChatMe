@@ -22,7 +22,7 @@ const onPressIcon = (type: IInputTypeKey, secureText: boolean) => {
   }
 };
 
-const iconName = (type: IInputTypeKey, secureText: boolean): string => {
+const iconRight = (type: IInputTypeKey, secureText: boolean): string => {
   switch (type) {
     case 'email':
       return '';
@@ -45,6 +45,6 @@ export const buildInput = (props: IProps, secureText: boolean) => {
     multiline: multiline,
     secureTextEntry: secureText,
     onPressIcon: onPressIcon(type, secureText),
-    iconName: iconName(type, secureText),
+    iconRight: iconRight(type, secureText)
   };
 };
