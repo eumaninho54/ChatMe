@@ -14,6 +14,7 @@
     "Invalid data": "Dados inválidos",
     "Email already used": "Email já utilizado",
     "Different passwords": "Senhas diferentes",
-    "Password must be at least 8 characters long": "Senha deve ter pelo menos 8 digitos"
+    "Password must be at least 8 characters long": "Senha deve ter pelo menos 8 digitos",
+    "Search message...": "Pesquise a mensagem..."
   }
 }
