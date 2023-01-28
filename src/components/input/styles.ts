@@ -6,7 +6,7 @@ import { ITheme } from '../../styles/colors/types';
 export const Wrapper = styled.TouchableOpacity`
   border-color: ${({borderColor}: {theme: ITheme, borderColor: string}) => 
 borderColor};
-  background-color: ${({theme}: {theme: ITheme}) => theme.secundaryBackground};
+  background-color: ${({theme}: {theme: ITheme}) => theme.secundaryLoginBackground};
   width: 100%;
   height: 55px;
   padding: 0px 20px;

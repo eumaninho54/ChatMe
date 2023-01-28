@@ -14,7 +14,7 @@ export const Wrapper = styled.View`
   flex: 1;
   flex-shrink: 0;
   padding: 20px;
-  background-color: ${({theme}: {theme: ITheme}) => theme.primaryBackground};
+  background-color: ${({theme}: {theme: ITheme}) => theme.primaryLoginBackground};
   align-items: center;
   justify-content: center;
 `
