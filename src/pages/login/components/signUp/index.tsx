@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Back, ButtonWrapper, InputWrapper, PasswordWrapper, Title, Titles, Wrapper } from './styles';
-import SafeArea from '../../../../components/safeArea';
 import Text from '../../../../components/text';
 import Logo from '../../../../components/logo';
 import LogoPng from '../../../../assets/logo/logo.png'
@@ -14,10 +13,14 @@ import { signUp } from '../../../../store/user/thunks/signUp';
 import { Alert } from 'react-native';
 import { useAppDispatch } from '../../../../store/hooks';
 import { IError } from '../../../../services/api/types';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ITheme } from '../../../../styles/colors/types';
+import { ThemeContext } from 'styled-components/native';
 
 
 const SignUp: React.FC = () => {
   const { t, i18n } = useTranslation()
+  const theme = useContext<ITheme>(ThemeContext)
   const { navigate } = useNavigation<SignInScreenNavigation>()
   const dispatch = useAppDispatch()
   const [email, setEmail] = useState('')
@@ -31,7 +34,7 @@ const SignUp: React.FC = () => {
       Alert.alert('Error', t('Different passwords') as string)
       return false
     }
-    if(password.length < 8){
+    if (password.length < 8) {
       setPassword('')
       setConfirmPassword('')
       Alert.alert('Error', t('Password must be at least 8 characters long') as string)
@@ -49,15 +52,15 @@ const SignUp: React.FC = () => {
   }
 
   return (
-    <SafeArea color='primaryBackground'>
+    <SafeAreaView style={{ backgroundColor: theme.primaryLoginBackground, flex: 1 }}>
       <Back onPress={() => navigate('signIn')}>
-        <SafeArea>
+        <SafeAreaView>
           <Icon
             color='primaryColor'
             name='angle-left'
             size='extra_big_30'
             family='FontAwesome5' />
-        </SafeArea>
+        </SafeAreaView>
       </Back>
 
       <Wrapper>
@@ -69,7 +72,7 @@ const SignUp: React.FC = () => {
         <Titles>
           <Title>
             <Text
-              text={t('Welcome to ChatMe!')}
+              text={t('Welcome to DevChat!')}
               color='primaryFont'
               size='big_18'
               weight='semibold' />
@@ -111,7 +114,7 @@ const SignUp: React.FC = () => {
         </ButtonWrapper>
 
       </Wrapper>
-    </SafeArea>
+    </SafeAreaView>
   )
 }
 

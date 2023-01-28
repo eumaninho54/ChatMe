@@ -5,7 +5,7 @@ import { ISignInStyles } from "../../types";
 export const Wrapper = styled.View`
   flex: 1;
   padding: 20px;
-  background-color: ${(props: ISignInStyles) => props.theme.primaryBackground };  
+  background-color: ${(props: ISignInStyles) => props.theme.primaryLoginBackground };  
   align-items: center;
   justify-content: center;
 `

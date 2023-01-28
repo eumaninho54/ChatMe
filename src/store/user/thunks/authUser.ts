@@ -11,6 +11,8 @@ export const authUser = createAsyncThunk('authUser', async () => {
     const refreshToken = await AsyncStorage.getItem('refreshToken')
     const req = await new ApiService(refreshToken).authUser()
 
+    await AsyncStorage.setItem('refreshToken', req.refreshToken)
+
     return req
   } 
   catch (err) {
