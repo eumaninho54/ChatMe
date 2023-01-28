@@ -4,6 +4,7 @@ import { TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import Icon from '../../components/icon';
+import Text from '../../components/text';
 import Home from '../../pages/home';
 import { ITheme } from '../../styles/colors/types';
 import { TabParamList, CustomTabBarButtonProps } from './types';
@@ -47,7 +48,6 @@ export const TabNav: React.FC = () => {
           headerShadowVisible: false,
           headerShown: false,
           tabBarShowLabel: false,
-
           tabBarStyle: {
             backgroundColor: theme.secundaryBackground,
             height: 70,
@@ -56,7 +56,7 @@ export const TabNav: React.FC = () => {
           }
         }}>
         <Screen
-          name='home'
+          name='Home'
           component={Home}
           options={{
             tabBarIcon: ({ focused }) => (
@@ -65,7 +65,7 @@ export const TabNav: React.FC = () => {
                   family='Ionicons'
                   name={focused ? 'chatbubbles' : 'chatbubbles-outline'}
                   size={'extra_big_30'}
-                  color={'primaryColor'} />
+                  color={focused ? 'primaryColor' : 'secundaryFont'} />
               </View>
             )
           }} />
@@ -94,7 +94,7 @@ export const TabNav: React.FC = () => {
           }} />
 
         <Screen
-          name='settings'
+          name='Settings'
           component={Home} // Test
           options={{
             tabBarIcon: ({ focused }) => (
@@ -103,7 +103,7 @@ export const TabNav: React.FC = () => {
                   family='Ionicons'
                   name={focused ? 'settings' : 'settings-outline'}
                   size={'extra_big_30'}
-                  color={'primaryColor'} />
+                  color={focused ? 'primaryColor' : 'secundaryFont'} />
               </View>
             )
           }} />
