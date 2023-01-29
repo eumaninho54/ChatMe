@@ -1,10 +1,22 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Header from './components/header';
+import { Wrapper } from './styles';
+import './services/websockets';
 
-// import { Container } from './styles';
 
 const Home: React.FC = () => {
-  return <View />;
+  const [searchValue, setSearchValue] = useState('')
+
+  return (
+    <SafeAreaView>
+      <Wrapper>
+        <Header 
+          searchValue={searchValue} 
+          setSearchValue={setSearchValue}/>
+      </Wrapper>
+    </SafeAreaView>
+  )
 }
 
 export default Home;
