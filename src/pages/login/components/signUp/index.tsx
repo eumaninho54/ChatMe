@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Back, ButtonWrapper, InputWrapper, PasswordWrapper, Title, Titles, Wrapper } from './styles';
+import { Back, ButtonWrapper, InputWrapper, PasswordWrapper, SafeAreaView, Title, Titles, Wrapper } from './styles';
 import Text from '../../../../components/text';
 import Logo from '../../../../components/logo';
 import LogoPng from '../../../../assets/logo/logo.png'
@@ -13,7 +13,6 @@ import { signUp } from '../../../../store/user/thunks/signUp';
 import { Alert } from 'react-native';
 import { useAppDispatch } from '../../../../store/hooks';
 import { IError } from '../../../../services/api/types';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ITheme } from '../../../../styles/colors/types';
 import { ThemeContext } from 'styled-components/native';
 
@@ -52,7 +51,7 @@ const SignUp: React.FC = () => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: theme.primaryLoginBackground, flex: 1 }}>
+    <SafeAreaView>
       <Back onPress={() => navigate('signIn')}>
         <SafeAreaView>
           <Icon

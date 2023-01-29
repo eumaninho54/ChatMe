@@ -1,6 +1,17 @@
+import { ITheme } from './../../../../styles/colors/types';
+import { SafeAreaView as safeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { ISignInStyles } from "../../types";
 
+
+type SafeAreaViewProps = {
+  theme: ITheme
+}
+
+export const SafeAreaView = styled(safeAreaView)`
+  background-color: ${({theme}: SafeAreaViewProps) => theme.primaryLoginBackground };
+  flex: 1;
+`
 
 export const Wrapper = styled.View`
   flex: 1;

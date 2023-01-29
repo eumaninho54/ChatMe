@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { ButtonWrapper, HaveAccount, InputWrapper, Register, Title, Titles, Wrapper } from './styles';
+import { ButtonWrapper, HaveAccount, InputWrapper, Register, SafeAreaView, Title, Titles, Wrapper } from './styles';
 import Text from '../../../../components/text';
 import { useTranslation } from 'react-i18next';
 import Input from '../../../../components/input';
@@ -10,18 +10,15 @@ import { useNavigation } from '@react-navigation/native';
 import Logo from '../../../../components/logo';
 import { useAppDispatch } from '../../../../store/hooks';
 import { Alert } from 'react-native';
-import { signUp } from '../../../../store/user/thunks/signUp';
 import { IError } from '../../../../services/api/types';
 import { signIn } from '../../../../store/user/thunks/signIn';
 import { ITheme } from '../../../../styles/colors/types';
 import { ThemeContext } from 'styled-components/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const SignIn: React.FC = () => {
   const { t, i18n } = useTranslation()
   const { navigate } = useNavigation<SignInScreenNavigation>()
-  const theme = useContext<ITheme>(ThemeContext)
   const dispatch = useAppDispatch()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -48,8 +45,7 @@ const SignIn: React.FC = () => {
   }
 
   return (
-    <SafeAreaView 
-      style={{ backgroundColor: theme.primaryLoginBackground, flex: 1 }}>
+    <SafeAreaView >
       <Wrapper>
         <Logo
           resizeMode='contain'
@@ -79,12 +75,14 @@ const SignIn: React.FC = () => {
             value={email}
             onChangeValue={setEmail}
             placeholder={t('Email')}
-            type={'email'} />
+            type={'email'} 
+            isLogin/>
           <Input
             value={password}
             onChangeValue={setPassword}
             placeholder={t('Password')}
-            type={'password'} />
+            type={'password'} 
+            isLogin={true}/>
         </InputWrapper>
 
         <ButtonWrapper>

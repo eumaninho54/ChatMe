@@ -1,6 +1,16 @@
+import { SafeAreaView as safeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { ITheme } from "../../../../styles/colors/types";
 
+
+type SafeAreaViewProps = {
+  theme: ITheme
+}
+
+export const SafeAreaView = styled(safeAreaView)`
+  background-color: ${({theme}: SafeAreaViewProps) =>  theme.primaryLoginBackground };
+  flex: 1;
+`
 
 export const Back = styled.TouchableOpacity`
   flex: 1;
