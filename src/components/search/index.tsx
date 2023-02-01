@@ -1,17 +1,14 @@
 import React, { forwardRef, useContext, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { TextInput, View } from 'react-native';
+import { TextInput } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useCombinedRefs } from '../../hooks/useCombineRefs';
 import { ITheme } from '../../styles/colors/types';
 import Icon from '../icon';
-import Input from '../input';
 import { InputField, InputWrapper } from './styles';
 import { IProps } from './types';
 
 
 const Search = forwardRef<TextInput, IProps>((props, ref) => {
-  const { t, i18n } = useTranslation()
   const { searchValue, setSearchValue } = props
   const refInput = useRef<TextInput>()
   const combinedRef = useCombinedRefs<TextInput>(ref, refInput)
