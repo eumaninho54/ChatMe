@@ -6,11 +6,9 @@ type WrapperProps = {
 }
 
 export const Wrapper = styled.View<WrapperProps>`
-  height: 120px;
-  background-color: ${({theme}) => theme.primaryBackground};
   flex-direction: row;
   align-items: center;
-  padding: 15px;
+  margin-top: 15px;
 `;
 
 export const InputWrapper = styled.View`
