@@ -15,6 +15,7 @@
     "Email already used": "Email already used",
     "Different passwords": "Different passwords",
     "Password must be at least 8 characters long":"Password must be at least 8 characters long",
-    "Search message...": "Search message..."
+    "Search message...": "Search message...",
+    "Input the username":"Input the username..."
   }
 }

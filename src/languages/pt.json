@@ -15,6 +15,7 @@
     "Email already used": "Email já utilizado",
     "Different passwords": "Senhas diferentes",
     "Password must be at least 8 characters long": "Senha deve ter pelo menos 8 digitos",
-    "Search message...": "Pesquise a mensagem..."
+    "Search message...": "Pesquise a mensagem...",
+    "Input the username":"Digite o nome do usuário..."
   }
 }
