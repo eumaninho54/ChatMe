@@ -1,48 +1,36 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
-import { TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import Icon from '../../components/icon';
-import Text from '../../components/text';
+import Add from '../../pages/add';
 import Home from '../../pages/home';
 import { ITheme } from '../../styles/colors/types';
-import { TabParamList, CustomTabBarButtonProps } from './types';
+import { AddButton, AddIcon, IconWrapper, SafeAreaView } from './styles';
+import { TabParamList, CustomTabBarButtonProps, TabScreenNavigationProps } from './types';
 
-const { Navigator, Screen } = createBottomTabNavigator<any>()
+const { Navigator, Screen } = createBottomTabNavigator<TabParamList>()
 
 export const TabNav: React.FC = () => {
+  const { navigate } = useNavigation<TabScreenNavigationProps>()
   const theme = useContext<ITheme>(ThemeContext)
 
   const CustomTabBarButton = (props: CustomTabBarButtonProps) => {
     return (
-      <TouchableOpacity
-        style={{
-          top: -30,
-          justifyContent: 'center',
-          alignItems: 'center',
-          elevation: 5,
-          shadowColor: '#000'
-        }}
-        onPress={() => { }}>
-        <View style={{
-          width: 60,
-          height: 60,
-          borderRadius: 60 / 2,
-          backgroundColor: theme.primaryColor
-        }}>
+      <AddButton onPress={() => navigate('Add', { screen: 'tab' })}>
+        <AddIcon>
           {props.children}
-        </View>
-      </TouchableOpacity>
+        </AddIcon>
+      </AddButton>
     )
   }
 
   return (
-    <SafeAreaView 
-      style={{flex: 1, backgroundColor: theme.secundaryBackground}} 
+    <SafeAreaView
       edges={['bottom']}>
       <Navigator
-        initialRouteName='home'
+        initialRouteName='Home'
         sceneContainerStyle={{ backgroundColor: theme.primaryBackground }}
         screenOptions={{
           headerShadowVisible: false,
@@ -72,21 +60,16 @@ export const TabNav: React.FC = () => {
 
         <Screen
           name='Add'
-          component={Home} // Test
+          component={Add}
           options={{
             tabBarIcon: () => (
-              <View 
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginLeft: 1,
-                }}>
+              <IconWrapper>
                 <Icon
                   family='Ionicons'
                   name={'add'}
                   size={'extra_big_30'}
                   color={'white'} />
-              </View>
+              </IconWrapper>
             ),
             tabBarButton: (props: any) => (
               <CustomTabBarButton {...props}/>
