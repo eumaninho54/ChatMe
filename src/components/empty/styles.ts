@@ -11,7 +11,7 @@ export const TitleWrapper = styled.View`
   margin-bottom: 10px;
 `
 
-export const DescriptionWrapper = styled.Text`
+export const DescriptionWrapper = styled.View`
   margin-bottom: 35px;
 `
 
