@@ -18,7 +18,7 @@ const Header: React.FC<IProps> = (props) => {
         <Search
           searchValue={searchValue}
           setSearchValue={setSearchValue}
-          placeholder={'Pesquise a mensagem...'}/>
+          placeholder={t('Search message...')}/>
       </InputWrapper>
 
       <SortButton>
