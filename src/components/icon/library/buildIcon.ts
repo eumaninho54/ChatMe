@@ -7,7 +7,8 @@ const iconSize: Record<IIconSizeKey, number> = {
   small_15: 15,
   normal_20: 20,
   big_25: 25,
-  extra_big_30: 30
+  extra_big_30: 30,
+  giant_35: 35
 }
 
 
