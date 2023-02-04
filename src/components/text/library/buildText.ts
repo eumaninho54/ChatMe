@@ -8,7 +8,8 @@ const textSize: Record<IFontSizeKey, number> = {
   small_14: 14,
   normal_16: 16,
   big_18: 20,
-  extra_giant_22: 22
+  giant_22: 22,
+  extra_giant_26: 26
 }
 
 const textFont: Record<IFontWeightKey, string> = {

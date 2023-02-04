@@ -15,7 +15,7 @@ const Empty = forwardRef<View, IProps>((props, ref) => {
           align='center'
           text={title}
           color={'primaryFont'}
-          size={'extra_giant_22'}
+          size={'giant_22'}
           weight={'bold'} />
       </TitleWrapper>
 

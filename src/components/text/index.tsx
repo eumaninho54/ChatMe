@@ -4,7 +4,7 @@ import { Title } from './styles';
 import { IProps } from './types';
 import { ITheme } from '../../styles/colors/types';
 import { ThemeContext } from 'styled-components/native';
-import { Text as TextReact } from 'react-native';
+import { Text as TextReact, View } from 'react-native';
 
 
 const Text = forwardRef<TextReact, IProps>((props, ref) => {
@@ -13,11 +13,11 @@ const Text = forwardRef<TextReact, IProps>((props, ref) => {
   const text = buildText(theme, props.color, props.size, props.weight)
 
   return (
-    <Title 
+    <Title
       align={align}
-      style={{fontSize: text.size}}
+      style={{ fontSize: text.size }}
       key={props.key}
-      ref={ref} 
+      ref={ref}
       color={text.color}
       font={text.font}>
       {props.text}
