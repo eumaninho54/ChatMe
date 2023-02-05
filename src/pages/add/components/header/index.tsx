@@ -2,7 +2,8 @@ import React, { forwardRef, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import Search from '../../../../components/search';
-import { Wrapper } from './styles';
+import Text from '../../../../components/text';
+import { TitleWrapper, Wrapper } from './styles';
 import { IProps } from './types';
 
 
@@ -12,6 +13,14 @@ const Header = forwardRef<View, IProps>((props, ref) => {
 
   return (
     <Wrapper>
+      <TitleWrapper>
+        <Text
+          text='Add'
+          color='primaryFont'
+          weight='bold'
+          size='extra_giant_26'/>
+      </TitleWrapper>
+
       <Search
         searchValue={usernameSearch}
         setSearchValue={setUsernameSearch}
