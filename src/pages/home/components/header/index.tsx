@@ -4,7 +4,8 @@ import { View } from 'react-native';
 import Icon from '../../../../components/icon';
 import Input from '../../../../components/input';
 import Search from '../../../../components/search';
-import { InputWrapper, SortButton, Wrapper } from './styles';
+import Text from '../../../../components/text';
+import { InputWrapper, SearchWrapper, SortButton, TitleWrapper, Wrapper } from './styles';
 import { IProps } from './types';
 
 
@@ -14,20 +15,30 @@ const Header: React.FC<IProps> = (props) => {
 
   return (
     <Wrapper>
-      <InputWrapper>
-        <Search
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          placeholder={t('Search message...')}/>
-      </InputWrapper>
-
-      <SortButton>
-        <Icon
-          family='Ionicons'
+      <TitleWrapper>
+        <Text
+          text='Messages'
           color='primaryFont'
-          size='big_25'
-          name='md-filter'/>
-      </SortButton>
+          weight='bold'
+          size='extra_giant_26' />
+      </TitleWrapper>
+
+      <InputWrapper>
+        <SearchWrapper>
+          <Search
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            placeholder={t('Search message...')} />
+        </SearchWrapper>
+
+        <SortButton>
+          <Icon
+            family='Ionicons'
+            color='primaryFont'
+            size='big_25'
+            name='md-filter' />
+        </SortButton>
+      </InputWrapper>
     </Wrapper>
   )
 }
