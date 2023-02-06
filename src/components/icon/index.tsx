@@ -7,6 +7,7 @@ import { buildIcon } from './library';
 import { IProps } from './types';
 
 const Icon = forwardRef<IconIonicons, IProps>((props, ref) => {
+  const { solid = false } = props
   const theme = useContext<Record<IColor, string>>(ThemeContext)
   const icon = buildIcon(theme, props)
 
@@ -16,6 +17,7 @@ const Icon = forwardRef<IconIonicons, IProps>((props, ref) => {
       {
         props.family == 'FontAwesome5'
           ? <IconFontAwesome5
+            solid={solid}
             ref={ref}
             key={props.key}
             name={icon.name}

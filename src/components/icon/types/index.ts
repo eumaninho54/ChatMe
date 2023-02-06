@@ -9,5 +9,6 @@ export type IProps = {
   size: IIconSizeKey
   color: IColor
   family: IIconFamilyKey
+  solid?: boolean
   key?: string
 }
