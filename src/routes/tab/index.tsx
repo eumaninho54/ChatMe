@@ -17,7 +17,9 @@ export const TabNav: React.FC = () => {
   const { navigate } = useNavigation<TabScreenNavigationProps>()
   const theme = useContext<ITheme>(ThemeContext)
   const animation = useRef(new Animated.Value(0)).current
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpenMenu, setIsOpenMenu] = useState(false)
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [modalType, setModalType] = useState<'User' | 'Group'>('User')
 
 
   const bottom = animation.interpolate({
@@ -31,7 +33,7 @@ export const TabNav: React.FC = () => {
   })
 
   const onToggleMenu = () => {
-    const toValue = isOpen ? 0 : 1
+    const toValue = isOpenMenu ? 0 : 1
 
     Animated.spring(animation, {
       toValue,
@@ -39,12 +41,17 @@ export const TabNav: React.FC = () => {
       useNativeDriver: false
     }).start()
 
-    setIsOpen(!isOpen)
+    setIsOpenMenu(!isOpenMenu)
   }
 
   const CustomTabBarButton = (props: CustomTabBarButtonProps) => {
     return (
       <>
+        <Add 
+          isVisible={isOpenModal} 
+          setVisible={setIsOpenModal}
+          type={modalType}/>
+
         <AddWrapper>
           <Svg
             width={97.5} height={79.3} viewBox="0 0 97.5 79.3"
@@ -77,7 +84,13 @@ export const TabNav: React.FC = () => {
             ]
           }}
           pointerEvents='box-none'>
-          <ItemIcon style={{elevation: 4}}>
+          <ItemIcon
+            onPress={() => { 
+              onToggleMenu()
+              setModalType('User')
+              setIsOpenModal(true)
+            }}
+            style={{ elevation: 4 }}>
             <Icon
               solid
               family='FontAwesome5'
@@ -86,7 +99,13 @@ export const TabNav: React.FC = () => {
               size='normal_20' />
           </ItemIcon>
 
-          <ItemIcon style={{elevation: 4}}>
+          <ItemIcon
+            onPress={() => { 
+              onToggleMenu()
+              setModalType('Group')
+              setIsOpenModal(true) 
+            }}
+            style={{ elevation: 4 }}>
             <Icon
               solid
               family='FontAwesome5'
