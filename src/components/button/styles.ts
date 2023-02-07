@@ -15,4 +15,5 @@ export const ButtonPress = styled.TouchableOpacity<ButtonPressType>`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
+  padding: 0px 15px;
 ` 
