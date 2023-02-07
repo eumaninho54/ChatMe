@@ -13,7 +13,7 @@ export const SafeAreaView = styled(safeAreaView)`
   flex: 1;
 `
 
-export const Wrapper = styled.View`
+export const Wrapper = styled.KeyboardAvoidingView`
   flex: 1;
   padding: 20px;
   background-color: ${(props: ISignInStyles) => props.theme.primaryLoginBackground };  

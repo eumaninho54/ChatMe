@@ -12,8 +12,6 @@ import { useAppDispatch } from '../../../../store/hooks';
 import { Alert } from 'react-native';
 import { IError } from '../../../../services/api/types';
 import { signIn } from '../../../../store/user/thunks/signIn';
-import { ITheme } from '../../../../styles/colors/types';
-import { ThemeContext } from 'styled-components/native';
 
 
 const SignIn: React.FC = () => {
@@ -46,7 +44,7 @@ const SignIn: React.FC = () => {
 
   return (
     <SafeAreaView >
-      <Wrapper>
+      <Wrapper behavior='padding'>
         <Logo
           resizeMode='contain'
           source={logo}
