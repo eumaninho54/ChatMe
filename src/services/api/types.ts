@@ -32,6 +32,16 @@ export type IAuthUser = {
   refreshToken: string
 }
 
+export type SearchUserProps = {
+  username: string
+}
+
+export type ISearchUser = {
+  id: string
+  username: string
+  imageUrl: string
+}
+
 export type IError = {
   message: string
 }

@@ -2,14 +2,14 @@ import { initialState } from './../initialState';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ActionReducerMapBuilder} from '@reduxjs/toolkit';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import { ApiService } from '../../../services/api';
+import { Api } from '../../../services/api';
 import { GetUserProps } from '../../../services/api/types';
 import { IUser } from '../types';
 import axios from 'axios';
 
 export const signIn = createAsyncThunk('signIn', async (props: GetUserProps) => {
   try {
-    const req = await new ApiService().getUser(props)
+    const req = await new Api().getUser(props)
 
     await AsyncStorage.setItem('refreshToken', req.refreshToken)
 

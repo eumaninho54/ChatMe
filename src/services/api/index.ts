@@ -1,9 +1,9 @@
 import axios, { AxiosError } from 'axios';
-import { GetUserProps, IAuthUser, IGetUser, INewUser, NewUserProps } from './types';
+import { GetUserProps, IAuthUser, IGetUser, INewUser, NewUserProps, SearchUserProps, ISearchUser } from './types';
 import { BASE_URL } from '@env'
 
 
-export class ApiService {
+export class Api {
   private baseUrl = BASE_URL;
 
   constructor(
@@ -51,6 +51,27 @@ export class ApiService {
           email: email,
           password: password
         }
+      })
+      .then((res) => res.data)
+      .catch((err: AxiosError) => Promise.reject(err)) 
+    
+    return req
+  }
+
+  async searchUser({username}: SearchUserProps){
+    console.log(username)
+
+    const req = await axios
+      .request<ISearchUser[]>({
+        method: 'get',
+        url: this.baseUrl + '/friends/search',
+        params: {
+          q: username
+        },
+        headers: {
+          "x-refresh-token": this._refreshToken,
+          "x-access-token": this._accessToken 
+        },
       })
       .then((res) => res.data)
       .catch((err: AxiosError) => Promise.reject(err)) 
