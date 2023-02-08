@@ -33,6 +33,8 @@ const Search = forwardRef<TextInput, IProps>((props, ref) => {
         onBlur={() => setBorderFocused(theme.primaryBackground)}
         placeholder={props.placeholder}
         placeholderTextColor={theme.secundaryFont}
+        autoCapitalize={'none'}
+        autoCorrect={false}
       />
     </InputWrapper>
   )

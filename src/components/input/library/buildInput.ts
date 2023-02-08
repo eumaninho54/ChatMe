@@ -2,6 +2,13 @@ import {KeyboardTypeOptions} from 'react-native';
 import {IInputTypeKey, IProps} from '../types';
 
 
+const autoCorrect: Record<IInputTypeKey, boolean> = {
+  email: false,
+  password: false,
+  text: true,
+  number: false
+};
+
 const autoCapitalize: Record<IInputTypeKey, 'none' | 'sentences'> = {
   email: 'none',
   password: 'none',
@@ -39,6 +46,7 @@ export const buildInput = (props: IProps, secureText: boolean) => {
   const {type = 'text', disabled = false, multiline = false} = props;
 
   return {
+    autoCorrect: autoCorrect[type],
     autoCapitalize: autoCapitalize[type],
     keyboardType: keyboardType[type],
     disabled: disabled,

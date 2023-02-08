@@ -81,6 +81,7 @@ const Input = forwardRef<TextInput, IProps>((props, ref) => {
           onChangeText={props.onChangeValue}
           placeholderTextColor={theme.secundaryFont}
           autoCapitalize={input.autoCapitalize}
+          autoCorrect={input.autoCorrect}
           secureTextEntry={secureText}
           keyboardType={input.keyboardType}
         />
