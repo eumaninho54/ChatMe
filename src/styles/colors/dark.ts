@@ -9,6 +9,7 @@ export const dark: ITheme = {
   secundaryLoginBackground: '#2A2A2A',
   primaryFont: '#fff',
   secundaryFont: '#cfcfcf',
+  border: '#474747',
   white: '#f2f2f2',
   focused: '#1994FF'
 };
