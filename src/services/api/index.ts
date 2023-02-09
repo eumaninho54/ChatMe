@@ -59,8 +59,6 @@ export class Api {
   }
 
   async searchUser({username}: SearchUserProps){
-    console.log(username)
-
     const req = await axios
       .request<ISearchUser[]>({
         method: 'get',
