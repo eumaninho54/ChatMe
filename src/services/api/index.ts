@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { GetUserProps, IAuthUser, IGetUser, INewUser, NewUserProps, SearchUserProps, ISearchUser } from './types';
+import { GetUserProps, IAuthUser, IGetUser, INewUser, NewUserProps, SearchUserProps, ISearchUser, sendFriendshipProps, ISendFriendship } from './types';
 import { BASE_URL } from '@env'
 
 
@@ -65,6 +65,22 @@ export class Api {
         url: this.baseUrl + '/friends/search',
         params: {
           q: username
+        }
+      })
+      .then((res) => res.data)
+      .catch((err: AxiosError) => Promise.reject(err)) 
+    
+    return req
+  }
+
+  async sendFriendship({ idFriend, isAdded }: sendFriendshipProps){
+    const req = await axios
+      .request<ISendFriendship>({
+        method: 'post',
+        url: this.baseUrl + '/friends/send',
+        data: {
+          isAdded: isAdded,
+          idFriend: idFriend
         },
         headers: {
           "x-refresh-token": this._refreshToken,
