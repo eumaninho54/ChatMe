@@ -11,6 +11,7 @@ export type IProps = {
   color: IColor
   size: IFontSize
   weight: IFontWeightKey
+  numberOfLines?: number
   align?: IFontAlignKey
   key?: string
 }

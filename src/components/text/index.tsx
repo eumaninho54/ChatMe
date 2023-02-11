@@ -16,6 +16,7 @@ const Text = forwardRef<TextReact, IProps>((props, ref) => {
     <Title
       align={align}
       style={{ fontSize: text.size }}
+      numberOfLines={props.numberOfLines}
       key={props.key}
       ref={ref}
       color={text.color}
