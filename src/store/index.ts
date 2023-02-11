@@ -1,18 +1,19 @@
-import { configureStore } from "@reduxjs/toolkit"
-import { reducers } from "./reducers";
-import { IUser } from "./user/types";
+import {configureStore} from '@reduxjs/toolkit';
+import {reducers} from './reducers';
+import {IUser} from './reducers/user/types';
 
 // Store configuration
 export interface StoreState {
-  user: IUser
+  user: IUser;
 }
 
 const store = configureStore({
   reducer: reducers,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    immutableCheck: false,
-    serializableCheck: false,
-  })
-}) 
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      immutableCheck: false,
+      serializableCheck: false,
+    }),
+});
 
-export { store }
+export {store};
