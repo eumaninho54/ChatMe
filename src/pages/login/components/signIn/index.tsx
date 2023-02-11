@@ -11,7 +11,9 @@ import Logo from '../../../../components/logo';
 import { useAppDispatch } from '../../../../store/hooks';
 import { Alert } from 'react-native';
 import { IError } from '../../../../services/api/types';
-import { signIn } from '../../../../store/user/thunks/signIn';
+import { signInThunk } from '../../../../store/reducers/user/thunks/signInThunk';
+import { AxiosError } from 'axios';
+import { apiError } from '../../../../errors/apiError';
 
 
 const SignIn: React.FC = () => {
@@ -21,8 +23,9 @@ const SignIn: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+
   const verifyPassword = () => {
-    if(password.length < 8){
+    if (password.length < 8) {
       setPassword('')
       Alert.alert('Error', t('Password must be at least 8 characters long') as string)
       return false
@@ -30,11 +33,11 @@ const SignIn: React.FC = () => {
     return true
   }
 
-  const onSignIn = async() => {
-    if(verifyPassword()){
-      await dispatch(signIn({ email, password }))
+  const onSignIn = async () => {
+    if (verifyPassword()) {
+      await dispatch(signInThunk({ email, password }))
         .unwrap()
-        .catch((err: IError) => Alert.alert(t('Error'), t(err.message) as string))
+        .catch((err: AxiosError) => apiError({ err, t }))
     }
   }
 
@@ -73,14 +76,14 @@ const SignIn: React.FC = () => {
             value={email}
             onChangeValue={setEmail}
             placeholder={t('Email')}
-            type={'email'} 
-            isLogin/>
+            type={'email'}
+            isLogin />
           <Input
             value={password}
             onChangeValue={setPassword}
             placeholder={t('Password')}
-            type={'password'} 
-            isLogin={true}/>
+            type={'password'}
+            isLogin={true} />
         </InputWrapper>
 
         <ButtonWrapper>

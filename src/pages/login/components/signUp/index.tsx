@@ -9,12 +9,14 @@ import Button from '../../../../components/button';
 import Icon from '../../../../components/icon';
 import { useNavigation } from '@react-navigation/native';
 import { SignInScreenNavigation } from '../../../../routes/types';
-import { signUp } from '../../../../store/user/thunks/signUp';
+import { signUpThunk } from '../../../../store/reducers/user/thunks/signUpThunk';
 import { Alert } from 'react-native';
 import { useAppDispatch } from '../../../../store/hooks';
 import { IError } from '../../../../services/api/types';
 import { ITheme } from '../../../../styles/colors/types';
 import { ThemeContext } from 'styled-components/native';
+import { apiError } from '../../../../errors/apiError';
+import { AxiosError } from 'axios';
 
 
 const SignUp: React.FC = () => {
@@ -44,9 +46,9 @@ const SignUp: React.FC = () => {
 
   const onSignUp = async () => {
     if (verifyPassword()) {
-      await dispatch(signUp({ email, password }))
+      await dispatch(signUpThunk({ email, password }))
         .unwrap()
-        .catch((err: IError) => Alert.alert(t('Error'), t(err.message) as string))
+        .catch((err: AxiosError) => apiError({ err, t }))
     }
   }
 
