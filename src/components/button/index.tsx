@@ -9,12 +9,14 @@ import { IProps } from './types';
 
 
 const Button = forwardRef<TouchableOpacity, IProps>((props, ref) => {
+  const { outline = false } = props
   const theme = useContext<ITheme>(ThemeContext)
   const button = buildButton(theme, props)
   const size = buildSize(props)
 
   return (
     <ButtonPress
+      outline={outline}
       height={size}
       onPress={() => props.onPress()}
       background={button.background} 
