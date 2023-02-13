@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 import { useDebouncedCallback } from 'use-debounce';
+import Avatar from '../../../../components/avatar';
 import Button from '../../../../components/button';
 import Loading from '../../../../components/loading';
 import Search from '../../../../components/search';
@@ -12,7 +13,7 @@ import { Api } from '../../../../services/api';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { exitUser } from '../../../../store/reducers/user';
 import { swapTokensThunk } from '../../../../store/reducers/user/thunks/swapTokensThunk';
-import { Avatar, FlatlistWrapper, InnerEmpty, InnerWrapper, ItemSeparator, LoadingWrapper, OuterEmpty, OuterWrapper, RenderItemWrapper, SendWrapper, UsernameWrapper, UserWrapper } from './styles';
+import { FlatlistWrapper, InnerEmpty, InnerWrapper, ItemSeparator, LoadingWrapper, OuterEmpty, OuterWrapper, RenderItemWrapper, SendWrapper, UsernameWrapper, UserWrapper } from './styles';
 import { IUsers } from './types';
 
 
@@ -34,8 +35,10 @@ const User: React.FC = () => {
 
   const onSearchUser = useDebouncedCallback(
     async (text: string) => {
-      const refreshToken = await AsyncStorage.getItem('refreshToken')
-      await new Api(refreshToken, user.accessToken).searchUser({ username: text })
+      await new Api().searchUser({ 
+        username: text, 
+        idUser: user.id
+      })
         .then((req) => {
           setUsers(req);
           if (isLoading) setIsLoading(false)
@@ -77,8 +80,7 @@ const User: React.FC = () => {
         <UserWrapper>
           <Avatar
             source={{ uri: item.imageUrl }}
-            resizeMode='cover'
-          />
+            resizeMode='cover'/>
 
           <UsernameWrapper>
             <Text

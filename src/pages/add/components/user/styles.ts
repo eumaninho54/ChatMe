@@ -64,12 +64,6 @@ export const UserWrapper = styled.View`
   flex: 1;
 `
 
-export const Avatar = styled.Image`
-  height: 60px; 
-  width: 60px; 
-  border-radius: 60px;
-`
-
 export const UsernameWrapper = styled.View`
   flex: 1px;
   margin-left: 10px;
