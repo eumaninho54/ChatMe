@@ -4,6 +4,7 @@ export type GetUserProps = {
 } 
 
 export type IGetUser = {
+  id: string
   username: string
   email: string
   auth: boolean
@@ -15,18 +16,21 @@ export type NewUserProps = {
 }
 
 export type INewUser = {
+  id: string
   username: string
   email: string
   auth: boolean
 } & ITokens
 
 export type IAuthUser = {
+  id: string
   username: string
   email: string
   auth: boolean
 } & ITokens
 
 export type SearchUserProps = {
+  idUser: string
   username: string
 }
 
@@ -45,6 +49,25 @@ export type sendFriendshipProps = {
 export type ISendFriendship = {
 
 } & ITokens
+
+export type allChatProps = {
+  idUser: string
+}
+
+export type IAllChat = {
+  idChat: string;
+  usernameFriend: string;
+  avatarFriend: string;
+  messages: {
+    id: string;
+    senderId: string;
+    message: string;
+    isRead: boolean;
+    isReceived: boolean;
+    createdAt: Date;
+  }[];
+  notRead: number;
+}
 
 export type ITokens = {
   accessToken: string

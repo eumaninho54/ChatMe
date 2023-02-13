@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { GetUserProps, IAuthUser, IGetUser, INewUser, NewUserProps, SearchUserProps, ISearchUser, sendFriendshipProps, ISendFriendship } from './types';
+import { GetUserProps, IAuthUser, IGetUser, INewUser, NewUserProps, SearchUserProps, ISearchUser, sendFriendshipProps, ISendFriendship, allChatProps, IAllChat } from './types';
 import { BASE_URL } from '@env'
 
 
@@ -58,13 +58,14 @@ export class Api {
     return req
   }
 
-  async searchUser({username}: SearchUserProps){
+  async searchUser({username, idUser}: SearchUserProps){
     const req = await axios
       .request<ISearchUser[]>({
         method: 'get',
         url: this.baseUrl + '/friends/search',
         params: {
-          q: username
+          q: username,
+          idUser: idUser
         }
       })
       .then((res) => res.data)
@@ -86,6 +87,21 @@ export class Api {
           "x-refresh-token": this._refreshToken,
           "x-access-token": this._accessToken 
         },
+      })
+      .then((res) => res.data)
+      .catch((err: AxiosError) => Promise.reject(err)) 
+    
+    return req
+  }
+
+  async allChat({ idUser }: allChatProps){
+    const req = await axios
+      .request<IAllChat[]>({
+        method: 'get',
+        url: this.baseUrl + '/messages/',
+        params: {
+          idUser: idUser
+        }
       })
       .then((res) => res.data)
       .catch((err: AxiosError) => Promise.reject(err)) 
