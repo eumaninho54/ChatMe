@@ -10,8 +10,11 @@ export const Wrapper = styled.View<Theme>`
 `;
 
 export const TitleWrapper = styled.View`
-  margin-bottom: 10px; 
+  margin-bottom: 5px; 
   margin-left: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export const InputWrapper = styled.View`
@@ -32,3 +35,12 @@ export const SortButton = styled.TouchableOpacity<Theme>`
   justify-content: center;
   align-items: center;
 `;
+
+export const GroupIconWrapper = styled.View`
+  flex-direction: row;
+`
+
+export const IconWrapper = styled.TouchableOpacity`
+  padding: 13px 15px;
+  margin: 0px 3px;
+`

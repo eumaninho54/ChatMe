@@ -1,11 +1,9 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
 import Icon from '../../../../components/icon';
-import Input from '../../../../components/input';
 import Search from '../../../../components/search';
 import Text from '../../../../components/text';
-import { InputWrapper, SearchWrapper, SortButton, TitleWrapper, Wrapper } from './styles';
+import { GroupIconWrapper, IconWrapper, InputWrapper, SearchWrapper, SortButton, TitleWrapper, Wrapper } from './styles';
 import { IProps } from './types';
 
 
@@ -21,6 +19,24 @@ const Header: React.FC<IProps> = (props) => {
           color='primaryFont'
           weight='bold'
           size='extra_giant_26' />
+
+        <GroupIconWrapper>
+          <IconWrapper>
+            <Icon
+              family='Ionicons'
+              color='primaryFont'
+              size='big_25'
+              name='camera' />
+          </IconWrapper>
+
+          <IconWrapper>
+            <Icon
+              family='Ionicons'
+              color='primaryFont'
+              size='big_25'
+              name='notifications' />
+          </IconWrapper>
+        </GroupIconWrapper>
       </TitleWrapper>
 
       <InputWrapper>
