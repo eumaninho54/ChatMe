@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ActionReducerMapBuilder} from '@reduxjs/toolkit';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {Api} from '../../../../../services/api';
-import {NewUserProps} from '../../../../../services/api/types';
 import {IUser} from '../../types';
 import axios from 'axios';
 import {IProps} from './types';

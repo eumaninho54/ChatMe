@@ -7,7 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import './languages/i18n'
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { authUser } from './store/user/thunks/authUser';
+import { authUserThunk } from './store/reducers/user/thunks/authUserThunk';
 
 
 if (__DEV__) {
@@ -22,7 +22,7 @@ const App: React.FC = () => {
     : darkMode['light']
 
   useEffect(() => {
-    store.dispatch(authUser())
+    store.dispatch(authUserThunk())
   }, [])
 
   return (
