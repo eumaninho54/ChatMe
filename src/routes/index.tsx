@@ -7,6 +7,7 @@ import { NativeStackParamList } from './types';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../store';
 import { TabNav } from './tab';
+import Chat from '../pages/chat';
 
 const { Navigator, Screen } = createNativeStackNavigator<NativeStackParamList>()
 
@@ -23,6 +24,7 @@ const Routes: React.FC = () => {
         
         : <Navigator screenOptions={{ headerShown: false }}>
             <Screen name='tab' component={TabNav} />
+            <Screen name='chat' component={Chat}/>
           </Navigator>
       }
     </NavigationContainer>

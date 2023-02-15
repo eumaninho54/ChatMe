@@ -16,24 +16,8 @@ export type TabScreenNavigationProps = CompositeNavigationProp<
   BottomTabNavigationProp<TabParamList>,
   NativeStackNavigationProp<NativeStackParamList>
 > 
-export type HomeScreenNavigationProps = CompositeNavigationProp<
-  BottomTabNavigationProp<TabParamList, 'Home'>,
-  NativeStackNavigationProp<NativeStackParamList>
->
-export type AddScreenNavigationProps = CompositeNavigationProp<
-  BottomTabNavigationProp<TabParamList, 'Add'>,
-  NativeStackNavigationProp<NativeStackParamList>
->
-export type SettingsScreenNavigationProps = CompositeNavigationProp<
-  BottomTabNavigationProp<TabParamList, 'Settings'>,
-  NativeStackNavigationProp<NativeStackParamList>
->
 
-// Type Route
-export type InformationRouteType = RouteProp<NativeStackParamList>
-
-
-// Type 
+// Type CustomTabBar
 export type CustomTabBarButtonProps = {
   children: React.ReactNode
   onPress?: ((e: GestureResponderEvent) => void) | undefined

@@ -11,29 +11,34 @@ import { apiError } from '../../errors/apiError';
 import { exitUser } from '../../store/reducers/user';
 import { getAllThunk } from '../../store/reducers/messages/thunks/getAllThunk';
 import { FlatList } from 'react-native';
-import { IMessages } from '../../store/reducers/messages/types';
+import { IChat } from '../../store/reducers/messages/types';
 import Text from '../../components/text';
 import Avatar from '../../components/avatar';
 import { ThemeContext } from 'styled-components/native';
 import { ITheme } from '../../styles/colors/types';
 import Icon from '../../components/icon';
+import { useNavigation } from '@react-navigation/native';
+import { IStackNavigation } from '../../routes/types';
+import Check from '../../components/check';
 
 
 const Home: React.FC = () => {
   const { t, i18n } = useTranslation()
   const user = useAppSelector((store) => store.user)
   const theme = useContext<ITheme>(ThemeContext)
+  const { navigate } = useNavigation<IStackNavigation>()
   const [searchValue, setSearchValue] = useState('')
   const messages = useAppSelector((store) => store.messages)
   const dispatch = useAppDispatch()
+
 
   const callbackApiError = () => {
     dispatch(exitUser())
   }
 
-  const renderItem = ({ item, index }: { item: IMessages, index: number }) => {
+  const renderItem = ({ item, index }: { item: IChat, index: number }) => {
 
-    const check = () => {
+    /*const check = () => {
       if (item.messages?.[0]?.senderId == user.id) {
         if (item.messages?.[0].isReceived && item.messages?.[0].isRead)
           return (
@@ -63,10 +68,11 @@ const Home: React.FC = () => {
       }
 
       return ''
-    }
+    }*/
 
     return (
-      <RenderItemWrapper>
+      <RenderItemWrapper 
+        onPress={() => navigate('chat', { messagesChat: messages[index] })}>
         <AvatarWrapper>
           <Avatar source={{ uri: item.avatarFriend }} />
         </AvatarWrapper>
@@ -92,7 +98,7 @@ const Home: React.FC = () => {
           <FooterInfoWrapper>
             <MessageWrapper>
               <CheckWrapper>
-                {check()}
+                <Check message={item.messages[0]}/>
               </CheckWrapper>
 
               <Text

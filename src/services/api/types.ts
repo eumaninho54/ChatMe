@@ -67,6 +67,7 @@ export type IAllChat = {
     createdAt: Date;
   }[];
   notRead: number;
+  isOnline: boolean;
 }
 
 export type ITokens = {

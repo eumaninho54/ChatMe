@@ -1,3 +1,3 @@
-import { IMessages } from "../messages/types";
+import {IChat} from "../messages/types";
 
-export const initialState: IMessages[] = []
+export const initialState: IChat[] = []

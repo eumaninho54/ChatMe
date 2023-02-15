@@ -1,14 +1,19 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {RouteProp} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {IChat} from '../store/reducers/messages/types';
 
 // Type Stack
 export type NativeStackParamList = {
   signIn: undefined;
   signUp: undefined;
-  tab: undefined
+  tab: undefined;
+  chat: {
+    messagesChat: IChat;
+  };
 };
 
 // Type Navigation
-export type SignInScreenNavigation = NativeStackNavigationProp<
-  NativeStackParamList,
-  'signIn'
->;
+export type IStackNavigation = NativeStackNavigationProp<NativeStackParamList>;
+
+// Type Chat Route
+export type IChatRouteType = RouteProp<NativeStackParamList, 'chat'>;

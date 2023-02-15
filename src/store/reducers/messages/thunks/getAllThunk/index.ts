@@ -1,9 +1,9 @@
+import { IChat } from './../../types/index';
 import {initialState} from '../../initialState';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ActionReducerMapBuilder} from '@reduxjs/toolkit';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {Api} from '../../../../../services/api';
-import {IMessages} from '../../types';
 import axios from 'axios';
 import { IProps } from './types';
 
@@ -22,7 +22,7 @@ export const getAllThunk = createAsyncThunk('getAll', async (props: IProps) => {
   }
 });
 
-export const getAllBuilder = (builder: ActionReducerMapBuilder<IMessages[]>) => {
+export const getAllBuilder = (builder: ActionReducerMapBuilder<IChat[]>) => {
   builder
     .addCase(getAllThunk.fulfilled, (state, { payload }) => {
       return payload
