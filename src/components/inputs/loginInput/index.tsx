@@ -1,17 +1,17 @@
 import React, { forwardRef, memo, useContext, useEffect, useRef, useState } from 'react';
 import { Animated, TextInput, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { useCombinedRefs } from '../../hooks/useCombineRefs';
-import { ITheme } from '../../styles/colors/types';
-import Icon from '../icon';
-import Text from '../text';
-import { buildText } from '../text/library';
+import { useCombinedRefs } from '../../../hooks/useCombineRefs';
+import { ITheme } from '../../../styles/colors/types';
+import Icon from '../../icon';
+import Text from '../../text';
+import { buildText } from '../../text/library';
 import { buildInput } from './library';
 import { IconWrapper, InputField, InputWrapper, Placeholder, Wrapper } from './styles';
 import { IProps } from './types';
 
 
-const Input = forwardRef<TextInput, IProps>((props, ref) => {
+const LoginInput = forwardRef<TextInput, IProps>((props, ref) => {
   const { isLogin = false } = props
   const [secureText, setSecureText] = useState(props.type == 'password' ? true : false)
   const input = buildInput(props, secureText)
@@ -29,7 +29,7 @@ const Input = forwardRef<TextInput, IProps>((props, ref) => {
 
     focus
       ? setBorderFocused(theme.focused)
-      : setBorderFocused( props.isLogin ? theme.secundaryBackground : theme.primaryBackground)
+      : setBorderFocused(props.isLogin ? theme.secundaryBackground : theme.primaryBackground)
   }
 
   const fontSize = valueTop.interpolate({
@@ -58,7 +58,7 @@ const Input = forwardRef<TextInput, IProps>((props, ref) => {
         ? <Icon
           name={props.iconLeft}
           size='normal_20'
-          color='primaryFont'
+          color='secundaryFont'
           family='Ionicons' />
         : null}
       <InputWrapper>
@@ -93,7 +93,7 @@ const Input = forwardRef<TextInput, IProps>((props, ref) => {
           <Icon
             name={input.iconRight}
             size='normal_20'
-            color='primaryFont'
+            color='secundaryFont'
             family='Ionicons' />
         </IconWrapper>
         : null
@@ -102,4 +102,4 @@ const Input = forwardRef<TextInput, IProps>((props, ref) => {
   )
 })
 
-export default memo(Input);
+export default memo(LoginInput);
