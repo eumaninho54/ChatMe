@@ -3,7 +3,7 @@ import { IProps } from "../types";
 
 
 const avatarSize: Record<IAvatarSizeKey, string> = {
-  small: '50px',
+  small: '40px',
   normal: '60px'
 }
 
