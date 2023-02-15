@@ -2,10 +2,10 @@ import React, { useContext, useState } from 'react';
 import { ButtonWrapper, HaveAccount, InputWrapper, Register, SafeAreaView, Title, Titles, Wrapper } from './styles';
 import Text from '../../../../components/text';
 import { useTranslation } from 'react-i18next';
-import Input from '../../../../components/input';
+import LoginInput from '../../../../components/inputs/loginInput';
 import logo from './../../../../assets/logo/logo.png'
 import Button from '../../../../components/button';
-import { SignInScreenNavigation } from '../../../../routes/types';
+import { IStackNavigation } from '../../../../routes/types';
 import { useNavigation } from '@react-navigation/native';
 import Logo from '../../../../components/logo';
 import { useAppDispatch } from '../../../../store/hooks';
@@ -18,7 +18,7 @@ import { apiError } from '../../../../errors/apiError';
 
 const SignIn: React.FC = () => {
   const { t, i18n } = useTranslation()
-  const { navigate } = useNavigation<SignInScreenNavigation>()
+  const { navigate } = useNavigation<IStackNavigation>()
   const dispatch = useAppDispatch()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -72,13 +72,13 @@ const SignIn: React.FC = () => {
         </Titles>
 
         <InputWrapper>
-          <Input
+          <LoginInput
             value={email}
             onChangeValue={setEmail}
             placeholder={t('Email')}
             type={'email'}
             isLogin />
-          <Input
+          <LoginInput
             value={password}
             onChangeValue={setPassword}
             placeholder={t('Password')}

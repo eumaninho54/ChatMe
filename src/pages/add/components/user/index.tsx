@@ -6,7 +6,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import Avatar from '../../../../components/avatar';
 import Button from '../../../../components/button';
 import Loading from '../../../../components/loading';
-import Search from '../../../../components/search';
+import BaseInput from '../../../../components/inputs/baseInput';
 import Text from '../../../../components/text';
 import { apiError } from '../../../../errors/apiError';
 import { Api } from '../../../../services/api';
@@ -35,8 +35,8 @@ const User: React.FC = () => {
 
   const onSearchUser = useDebouncedCallback(
     async (text: string) => {
-      await new Api().searchUser({ 
-        username: text, 
+      await new Api().searchUser({
+        username: text,
         idUser: user.id
       })
         .then((req) => {
@@ -80,7 +80,7 @@ const User: React.FC = () => {
         <UserWrapper>
           <Avatar
             source={{ uri: item.imageUrl }}
-            resizeMode='cover'/>
+            resizeMode='cover' />
 
           <UsernameWrapper>
             <Text
@@ -114,10 +114,13 @@ const User: React.FC = () => {
 
   return (
     <OuterWrapper>
-      <Search
+      <BaseInput
+        color='secundaryBackground'
+        outline={true}
         placeholder={t('Input the username')}
-        setSearchValue={(text) => onChangeValue(text)}
-        searchValue={searchUsers} />
+        onChangeValue={(text) => onChangeValue(text)}
+        value={searchUsers}
+        hasLeftIcon={true} />
 
       <InnerWrapper>
         {users.length > 0

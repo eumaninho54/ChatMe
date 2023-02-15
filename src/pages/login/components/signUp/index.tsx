@@ -4,11 +4,11 @@ import Text from '../../../../components/text';
 import Logo from '../../../../components/logo';
 import LogoPng from '../../../../assets/logo/logo.png'
 import { useTranslation } from 'react-i18next';
-import Input from '../../../../components/input';
+import LoginInput from '../../../../components/inputs/loginInput';
 import Button from '../../../../components/button';
 import Icon from '../../../../components/icon';
 import { useNavigation } from '@react-navigation/native';
-import { SignInScreenNavigation } from '../../../../routes/types';
+import { IStackNavigation } from '../../../../routes/types';
 import { signUpThunk } from '../../../../store/reducers/user/thunks/signUpThunk';
 import { Alert } from 'react-native';
 import { useAppDispatch } from '../../../../store/hooks';
@@ -22,7 +22,7 @@ import { AxiosError } from 'axios';
 const SignUp: React.FC = () => {
   const { t, i18n } = useTranslation()
   const theme = useContext<ITheme>(ThemeContext)
-  const { navigate } = useNavigation<SignInScreenNavigation>()
+  const { navigate } = useNavigation<IStackNavigation>()
   const dispatch = useAppDispatch()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -89,20 +89,20 @@ const SignUp: React.FC = () => {
         </Titles>
 
         <InputWrapper>
-          <Input
+          <LoginInput
             value={email}
             onChangeValue={setEmail}
             placeholder={t('Email')}
             type={'email'} />
 
           <PasswordWrapper>
-            <Input
+            <LoginInput
               value={password}
               onChangeValue={setPassword}
               placeholder={t('Password')}
               type={'password'} />
 
-            <Input
+            <LoginInput
               value={confirmPassword}
               onChangeValue={setConfirmPassword}
               placeholder={t('Confirm Password')}
