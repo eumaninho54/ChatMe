@@ -32,7 +32,7 @@ export const LinearGradientWrapper = styled.View`
 export const LinearGradient = styled(Lineargradient)`
   flex: 1; 
   width: 100%; 
-  border-radius: 10;
+  border-radius: 10px;
 `
 
 export const ItemSeparator = styled.View`
@@ -85,9 +85,9 @@ export const NotReadWrapper = styled.View<IProps>`
   background-color: ${({theme}) => theme.primaryColor};
   justify-content: center;
   align-items: center;
-  border-radius: 99;
-  height: 25;
-  min-width: 25;
+  border-radius: 99px;
+  height: 25px;
+  min-width: 25px;
   padding: 0px 5px;
-  margin-left: 15;
+  margin-left: 15px;
 `
