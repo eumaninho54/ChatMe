@@ -11,5 +11,6 @@ export const light: ITheme = {
   secundaryFont: '#424242',
   border: '#c4c4c4',
   white: '#f2f2f2',
-  focused: '#1994FF'
+  focused: '#1994FF',
+  online: '#05AE13',
 };

@@ -11,5 +11,6 @@ export const dark: ITheme = {
   secundaryFont: '#cfcfcf',
   border: '#474747',
   white: '#f2f2f2',
-  focused: '#1994FF'
+  focused: '#1994FF',
+  online: '#05AE13',
 };
