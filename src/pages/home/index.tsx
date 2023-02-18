@@ -38,38 +38,6 @@ const Home: React.FC = () => {
 
   const renderItem = ({ item, index }: { item: IChat, index: number }) => {
 
-    /*const check = () => {
-      if (item.messages?.[0]?.senderId == user.id) {
-        if (item.messages?.[0].isReceived && item.messages?.[0].isRead)
-          return (
-            <Icon
-              family='Ionicons'
-              color='focused'
-              name='checkmark-done'
-              size='small_15' />
-          )
-
-        else if (item.messages?.[0].isReceived)
-          return (
-            <Icon
-              family='Ionicons'
-              color='secundaryFont'
-              name='checkmark-done'
-              size='small_15' />
-          )
-
-        else return (
-          <Icon
-            family='Ionicons'
-            color='secundaryFont'
-            name='checkmark'
-            size='small_15' />
-        )
-      }
-
-      return ''
-    }*/
-
     return (
       <RenderItemWrapper 
         onPress={() => navigate('chat', { messagesChat: messages[index] })}>
