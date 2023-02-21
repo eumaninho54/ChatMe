@@ -14,7 +14,7 @@ const Avatar = forwardRef<Image, IProps>((props, ref) => {
       ref={ref}
       size={avatar.size}
       resizeMode={avatar.resizeMode}
-      source={avatar.source}
+      source={avatar.source ? avatar.source : defaultAvatar}
       defaultSource={defaultAvatar}/>
   )
 })
