@@ -16,7 +16,7 @@ const Check: React.FC<IProps> = (props) => {
             family='Ionicons'
             color='focused'
             name='checkmark-done'
-            size='small_15' />
+            size='normal_20' />
         )
 
       else if (message.isReceived)
@@ -25,7 +25,7 @@ const Check: React.FC<IProps> = (props) => {
             family='Ionicons'
             color='secundaryFont'
             name='checkmark-done'
-            size='small_15' />
+            size='normal_20' />
         )
 
       else return (
@@ -33,7 +33,7 @@ const Check: React.FC<IProps> = (props) => {
           family='Ionicons'
           color='secundaryFont'
           name='checkmark'
-          size='small_15' />
+          size='normal_20' />
       )
     }
 
