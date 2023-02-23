@@ -1,7 +1,7 @@
 import React, { forwardRef, memo, useContext, useRef, useState } from 'react';
 import { TextInput } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { useCombinedRefs } from '../../../hooks/useCombineRefs';
+import { useCombinedRefs } from '../../../hooks/useCombineRefs/useCombineRefs';
 import { ITheme } from '../../../styles/colors/types';
 import Icon from '../../icon';
 import { IconWrapper, InputField, InputWrapper } from './styles';
