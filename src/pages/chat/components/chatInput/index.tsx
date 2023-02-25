@@ -3,11 +3,19 @@ import { Animated, View } from 'react-native';
 import BaseInput from '../../../../components/inputs/baseInput';
 import { ButtonsGroup, ButtonsWrapper, IconWrapper, InputWrapper, SendGroup, Wrapper } from './styles';
 import Icon from '../../../../components/icon';
+import { useWebSocket } from '../../../../hooks/useWebSocket/useWebSocket';
+import { IProps } from './types';
 
 
-const ChatInput: React.FC = () => {
+const ChatInput: React.FC<IProps> = ({ idChat }) => {
+  const { sendMessage } = useWebSocket()
   const [messageText, setMessageText] = useState('')
   const buttonsWidth = useRef(new Animated.Value(100)).current
+
+
+  const onSend = () => {
+    sendMessage({ message: messageText, idChat })
+  }
 
   const sendOpacity = buttonsWidth.interpolate({
     inputRange: [50, 80],
@@ -70,7 +78,7 @@ const ChatInput: React.FC = () => {
 
         <SendGroup 
           style={{ opacity: sendOpacity }}>
-          <IconWrapper>
+          <IconWrapper onPress={onSend}>
             <Icon
               family='Ionicons'
               color='secundaryFont'
