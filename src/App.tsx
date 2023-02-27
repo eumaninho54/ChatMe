@@ -8,6 +8,7 @@ import './languages/i18n'
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { authUserThunk } from './store/reducers/user/thunks/authUserThunk';
+import FlashMessage from 'react-native-flash-message';
 
 
 if (__DEV__) {
@@ -23,11 +24,13 @@ const App: React.FC = () => {
 
   useEffect(() => {
     store.dispatch(authUserThunk())
+
   }, [])
 
   return (
     <Provider store={store}>
       <SafeAreaProvider>
+        <FlashMessage animated position={'top'} />
         <StatusBar animated backgroundColor={theme.primaryColor} />
         <ThemeProvider theme={theme}>
           <Routes />
