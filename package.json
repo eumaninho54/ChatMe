@@ -23,6 +23,7 @@
     "react-native": "0.70.6",
     "react-native-device-info": "^10.3.0",
     "react-native-flash-message": "^0.4.0",
+    "react-native-keychain": "^8.1.1",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-localize": "^2.2.4",
     "react-native-modal": "^13.0.1",

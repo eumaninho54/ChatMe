@@ -36,7 +36,6 @@ const App: React.FC = () => {
           <Routes />
         </ThemeProvider>
       </SafeAreaProvider>
-
     </Provider>
   )
 }
