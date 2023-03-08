@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Header from './components/header';
-import { AvatarWrapper, CheckWrapper, FooterInfoWrapper, HeaderInfoWrapper, InfoWrapper, ItemSeparator, LinearGradient, LinearGradientWrapper, MaskedView, MessageWrapper, NotReadWrapper, RenderItemWrapper, SafeAreaView, UsernameWrapper, Wrapper } from './styles';
-import '../../services/websockets';
+import { AvatarWrapper, CheckWrapper, FooterInfoWrapper, HeaderInfoWrapper, InfoWrapper, ItemSeparator, LinearGradient, LinearGradientWrapper, MaskedView, MessageWrapper, NotReadWrapper, RenderItemWrapper, SafeAreaView, UsernameWrapper } from './styles';
 import Empty from '../../components/empty';
 import DownArrow from '../../assets/arrow/arrow.png'
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { reactotron } from '../../config/reactotron';
 import { apiError } from '../../errors/apiError';
 import { exitUser } from '../../store/reducers/user';
 import { getAllThunk } from '../../store/reducers/messages/thunks/getAllThunk';
@@ -16,14 +14,18 @@ import Text from '../../components/text';
 import Avatar from '../../components/avatar';
 import { ThemeContext } from 'styled-components/native';
 import { ITheme } from '../../styles/colors/types';
-import Icon from '../../components/icon';
 import { useNavigation } from '@react-navigation/native';
 import { IStackNavigation } from '../../routes/types';
 import Check from '../../components/check';
+import { useWebSocket } from '../../hooks/useWebSocket/useWebSocket';
+import { IAllChat } from '../../services/api/types';
+import '../../services/websockets'
+import { reactotron } from '../../config/reactotron';
 
 
 const Home: React.FC = () => {
   const { t, i18n } = useTranslation()
+  const { chatsConnect } = useWebSocket()
   const user = useAppSelector((store) => store.user)
   const theme = useContext<ITheme>(ThemeContext)
   const { navigate } = useNavigation<IStackNavigation>()
@@ -37,9 +39,8 @@ const Home: React.FC = () => {
   }
 
   const renderItem = ({ item, index }: { item: IChat, index: number }) => {
-
     return (
-      <RenderItemWrapper 
+      <RenderItemWrapper
         onPress={() => navigate('chat', { messagesChat: messages[index] })}>
         <AvatarWrapper>
           <Avatar source={{ uri: item.avatarFriend }} />
@@ -64,18 +65,22 @@ const Home: React.FC = () => {
           </HeaderInfoWrapper>
 
           <FooterInfoWrapper>
-            <MessageWrapper>
-              <CheckWrapper>
-                <Check message={item.messages[0]}/>
-              </CheckWrapper>
+            {item.messages[0]
+              ?
+              <MessageWrapper>
+                <CheckWrapper>
+                  <Check message={item.messages[0]} />
+                </CheckWrapper>
 
-              <Text
-                text={item?.messages[0]?.message}
-                color='secundaryFont'
-                size='normal_16'
-                weight='regular'
-                numberOfLines={2} />
-            </MessageWrapper>
+                <Text
+                  text={item?.messages[0]?.message}
+                  color='secundaryFont'
+                  size='normal_16'
+                  weight='regular'
+                  numberOfLines={2} />
+              </MessageWrapper>
+              : null
+            }
 
             {item.notRead
               ?
@@ -98,8 +103,8 @@ const Home: React.FC = () => {
     dispatch(getAllThunk({ idUser: user.id }))
       .unwrap()
       .catch((err) => apiError({ err, t, callbackApiError }))
+      .then((chats) => chatsConnect(chats as IAllChat[]))
   }, [])
-
 
   return (
     <SafeAreaView edges={['top']}>
