@@ -1,13 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "./initialState";
-import { messagesAsyncBuilder } from './thunks';
+import {createSlice} from '@reduxjs/toolkit';
+import {addMessageAction} from './actions/addMessage';
+import { IAction } from './actions/addMessage/types';
+import {initialState} from './initialState';
+import {messagesAsyncBuilder} from './thunks';
 
 const messagesSlice = createSlice({
-  name: "messages",
+  name: 'messages',
   initialState: initialState,
-  reducers: { },
-  extraReducers: (builder) => messagesAsyncBuilder(builder)
-})
+  reducers: {
+    addMessage(state, action: IAction) {
+      return addMessageAction(state, action);
+    },
+  },
+  extraReducers: builder => messagesAsyncBuilder(builder),
+});
 
 export default messagesSlice.reducer;
-export const {  } = messagesSlice.actions;
+export const { addMessage } = messagesSlice.actions;
