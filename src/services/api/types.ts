@@ -56,8 +56,8 @@ export type allChatProps = {
 
 export type IAllChat = {
   idChat: string;
-  usernameFriend: string;
-  avatarFriend: string;
+  name: string;
+  icon: string;
   messages: {
     id: string;
     senderId: string;
