@@ -1,17 +1,21 @@
+import { IUser } from "../../user/types";
+
 export type IMessages = {
   id: string;
   senderId: string;
   message: string;
-  isRead: boolean;
-  isReceived: boolean;
+  isReadBy: string[];
+  isReceivedBy: string[];
   createdAt: Date;
 }
 
 export type IChat = {
   idChat: string;
-  usernameFriend: string;
-  avatarFriend: string;
+  users: IUser[]
+  name?: string;
+  icon?: string;
   messages: IMessages[];
   notRead: number;
+  isGroup: boolean
   isOnline: boolean;
 };

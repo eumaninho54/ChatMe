@@ -1,6 +1,7 @@
 export type IUser = {
   id: string
-  username: string
+  imageUrl: string
+  name: string
   email: string
   auth: boolean
   accessToken: string

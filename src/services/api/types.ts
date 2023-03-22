@@ -1,3 +1,5 @@
+import { IUser } from "../../store/reducers/user/types"
+
 export type GetUserProps = {
   email: string
   password: string
@@ -56,17 +58,19 @@ export type allChatProps = {
 
 export type IAllChat = {
   idChat: string;
-  name: string;
-  icon: string;
+  users: IUser[]
+  name?: string;
+  icon?: string;
   messages: {
     id: string;
     senderId: string;
     message: string;
-    isRead: boolean;
-    isReceived: boolean;
+    isReadBy: string[];
+    isReceivedBy: string[];
     createdAt: Date;
   }[];
   notRead: number;
+  isGroup: boolean;
   isOnline: boolean;
 }
 
