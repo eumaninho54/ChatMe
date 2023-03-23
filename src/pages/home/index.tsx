@@ -20,7 +20,7 @@ import Check from '../../components/check';
 import { useWebSocket } from '../../hooks/useWebSocket/useWebSocket';
 import { IAllChat } from '../../services/api/types';
 import '../../services/websockets'
-import { reactotron } from '../../config/reactotron';
+import { formatDate } from '../../utils/formatDate';
 
 
 const Home: React.FC = () => {
@@ -39,18 +39,30 @@ const Home: React.FC = () => {
   }
 
   const renderItem = ({ item, index }: { item: IChat, index: number }) => {
+    const chatTitle = item.name 
+      ? item.name
+      : item.users.filter((chatUser) => chatUser.id != user.id)[0].name.split('#')[0]
+  
+    const chatAvatar = item.icon
+      ? item.icon
+      : item.users.filter((chatUser) => chatUser.id != user.id)?.[0].imageUrl
+
     return (
       <RenderItemWrapper
-        onPress={() => navigate('chat', { messagesChat: messages[index] })}>
+        onPress={() => navigate('chat', { messagesChat: {
+          ...messages[index],
+          icon: chatAvatar,
+          name: chatTitle
+        } })}>
         <AvatarWrapper>
-          <Avatar source={{ uri: item.avatarFriend }} />
+          <Avatar source={{ uri: chatAvatar }} />
         </AvatarWrapper>
 
         <InfoWrapper>
           <HeaderInfoWrapper>
             <UsernameWrapper>
               <Text
-                text={item.usernameFriend.split('#')[0]}
+                text={chatTitle}
                 color='primaryFont'
                 size='normal_16'
                 weight='semibold'
@@ -58,7 +70,7 @@ const Home: React.FC = () => {
             </UsernameWrapper>
 
             <Text
-              text={'08:34 PM'}
+              text={formatDate(item.messages[0].createdAt)}
               color='secundaryFont'
               size='normal_16'
               weight='regular' />

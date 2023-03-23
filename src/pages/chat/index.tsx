@@ -5,7 +5,8 @@ import Check from '../../components/check';
 import Text from '../../components/text';
 import { IChatRouteType, IStackNavigation } from '../../routes/types';
 import { useAppSelector } from '../../store/hooks';
-import { IMessages } from '../../store/reducers/messages/types';
+import { IChat, IMessages } from '../../store/reducers/messages/types';
+import { formatDate } from '../../utils/formatDate';
 import ChatInput from './components/chatInput';
 import Header from './components/header';
 import Speech from './components/speech';
@@ -18,8 +19,13 @@ const Chat: React.FC = () => {
   const messages = useAppSelector((store) => store.messages)
   const [chat, setChat] = useState(messagesChat)
 
+
   useEffect(() => {
-    const newChat = messages.find((message) => message.idChat == chat.idChat)
+    const newChat: IChat = {
+      ...messages.find((message) => message.idChat == chat.idChat) as IChat,
+      icon: messagesChat.icon,
+      name: messagesChat.name
+    }
 
     newChat 
       ? setChat(newChat)
@@ -40,7 +46,7 @@ const Chat: React.FC = () => {
               <Text
                 weight='regular'
                 size='normal_16'
-                text={'09:34 PM'}
+                text={formatDate(item.createdAt)}
                 color='secundaryFont'
               />
             </DateMessageWrapper>
@@ -57,8 +63,8 @@ const Chat: React.FC = () => {
       <Wrapper>
         <Header
           id={chat.idChat}
-          avatar={chat.avatarFriend}
-          username={chat.usernameFriend}
+          avatar={chat.icon || ''}
+          username={chat.name || ''}
           isOnline={chat.isOnline} />
 
         <MessagesWrapper>
