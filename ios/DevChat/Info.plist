@@ -35,10 +35,14 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+
+  <!-- Permissions in App -->
+	<key>NSMicrophoneUsageDescription</key>
+  <string>We need the permissions to your can send audio</string>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string>We need the permissions to notify about messages</string>
+  <!-- // -->
+
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-ThinItalic.ttf</string>
