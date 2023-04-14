@@ -8,6 +8,9 @@ import './languages/i18n'
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { authUserThunk } from './store/reducers/user/thunks/authUserThunk';
+import OneSignal from 'react-native-onesignal'
+import { EXTERNAL_USER_ID } from '@env'
+import usePermissions from './hooks/usePermissions';
 
 
 if (__DEV__) {
@@ -16,6 +19,7 @@ if (__DEV__) {
 }
 
 const App: React.FC = () => {
+  const { notifications } = usePermissions()
   const deviceTheme = useColorScheme()
   const theme = deviceTheme != null && deviceTheme != undefined
     ? darkMode[deviceTheme]
@@ -23,7 +27,9 @@ const App: React.FC = () => {
 
   useEffect(() => {
     store.dispatch(authUserThunk())
-
+    
+    notifications()
+    OneSignal.setAppId(EXTERNAL_USER_ID)
   }, [])
 
   return (
