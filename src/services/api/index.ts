@@ -58,13 +58,13 @@ export class Api {
     return req
   }
 
-  async searchUser({username, idUser}: SearchUserProps){
+  async searchUser({name, idUser}: SearchUserProps){
     const req = await axios
       .request<ISearchUser[]>({
         method: 'get',
         url: this.baseUrl + '/friends/search',
         params: {
-          q: username,
+          q: name,
           idUser: idUser
         }
       })

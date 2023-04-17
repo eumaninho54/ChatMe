@@ -7,7 +7,8 @@ export type GetUserProps = {
 
 export type IGetUser = {
   id: string
-  username: string
+  name: string
+  imageUrl: string
   email: string
   auth: boolean
 } & ITokens
@@ -19,26 +20,28 @@ export type NewUserProps = {
 
 export type INewUser = {
   id: string
-  username: string
+  name: string
+  imageUrl: string
   email: string
   auth: boolean
 } & ITokens
 
 export type IAuthUser = {
   id: string
-  username: string
+  name: string
+  imageUrl: string
   email: string
   auth: boolean
 } & ITokens
 
 export type SearchUserProps = {
   idUser: string
-  username: string
+  name: string
 }
 
 export type ISearchUser = {
   id: string
-  username: string
+  name: string
   imageUrl: string
   hasFriendshipRequest: boolean
 }
