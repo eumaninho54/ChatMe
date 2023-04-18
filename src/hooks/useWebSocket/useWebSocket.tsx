@@ -21,7 +21,7 @@ export const useWebSocket = () => {
       socket.emit('chat', {
         idUser: user.id,
         idChat: roomsId,
-        username: user.username
+        username: user.name
       })
 
       socket.on('message', (data: IOnMessage) => {
@@ -39,7 +39,7 @@ export const useWebSocket = () => {
       idUser: user.id,
       idChat: props.idChat,
       message: props.message,
-      username: user.username
+      username: user.name
     })
   }
 

@@ -9,8 +9,9 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { authUserThunk } from './store/reducers/user/thunks/authUserThunk';
 import OneSignal from 'react-native-onesignal'
-import { EXTERNAL_USER_ID } from '@env'
+import { ONESIGNAL_APP_ID } from '@env'
 import usePermissions from './hooks/usePermissions';
+import { reactotron } from './config/reactotron';
 
 
 if (__DEV__) {
@@ -27,9 +28,18 @@ const App: React.FC = () => {
 
   useEffect(() => {
     store.dispatch(authUserThunk())
-    
     notifications()
-    OneSignal.setAppId(EXTERNAL_USER_ID)
+
+    OneSignal.setAppId(ONESIGNAL_APP_ID)
+    
+    OneSignal.setNotificationWillShowInForegroundHandler(event => {
+      reactotron.log?.("OneSignal: notification will show in foreground:", event)
+      reactotron.log?.("notification: ", event.getNotification())
+    })
+
+    OneSignal.setNotificationOpenedHandler(notif => {
+      reactotron.log?.(notif, '2')
+    })
   }, [])
 
   return (
