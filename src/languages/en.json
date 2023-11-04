@@ -1,23 +1,33 @@
 {
   "translation": {
-    "Welcome to DevChat!": "Welcome to DevChat!",
-    "Keep your data safe!": "Keep your data safe!",
-    "Email": "Email",
-    "Password": "Password",
-    "Login": "Login",
-    "Forgot password?": "Forgot password?",
-    "Don't have an account?": "Don't have an account?",
-    "Register!": "Register!",
-    "Confirm Password": "Confirm Password",
-    "SignUp": "SignUp",
-    "Error": "Error",
-    "Invalid data": "Invalid data",
-    "Email already used": "Email already used",
-    "Different passwords": "Different passwords",
-    "Password must be at least 8 characters long":"Password must be at least 8 characters long",
+    "Login": {
+      "Welcome to DevChat!": "Welcome to DevChat!",
+      "Keep your data safe!": "Keep your data safe!",
+      "Email": "Email",
+      "Password": "Password",
+      "Login": "Login",
+      "Forgot password?": "Forgot password?",
+      "Don't have an account?": "Don't have an account?",
+      "Register!": "Register!",
+      "Confirm Password": "Confirm Password",
+      "SignUp": "SignUp",
+      "Invalid data": "Invalid data.",
+      "Email already used": "Email already used.",
+      "Different passwords": "Different passwords.",
+      "Password must be at least 8 characters long": "Password must be at least 8 characters long."
+    },
     "Search message...": "Search message...",
-    "Input the username":"Input the username#0000",
-    "No chat yet...":"No chat yet...",
-    "Search for any contact or add a new one!":"Search for any contact or add a new one!"
+    "Input the username": "Input the username#0000",
+    "No chat yet...": "No chat yet...",
+    "Search for any contact or add a new one!": "Search for any contact or add a new one!",
+    
+    "Alerts": {
+      "Title": {
+        "Error": "Error!"
+      },
+      "Description": {
+        "No connection": "No connection."
+      }
+    }
   }
 }

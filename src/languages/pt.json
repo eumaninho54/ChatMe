@@ -1,23 +1,33 @@
 {
   "translation": {
-    "Welcome to DevChat!": "Bem-bindo ao DevChat!",
-    "Keep your data safe!": "Mantenha seus dados seguros!",
-    "Email": "Email",
-    "Password": "Senha",
-    "Login": "Entrar",
-    "Forgot password?": "Esqueceu a senha?",
-    "Don't have an account?": "Não tem uma conta?",
-    "Register!": "Registre-se!",
-    "Confirm Password": "Confirme a senha",
-    "SignUp": "Cadastrar",
-    "Error": "Erro",
-    "Invalid data": "Dados inválidos",
-    "Email already used": "Email já utilizado",
-    "Different passwords": "Senhas diferentes",
-    "Password must be at least 8 characters long": "Senha deve ter pelo menos 8 digitos",
+    "Login": {
+      "Welcome to DevChat!": "Bem-bindo ao DevChat!",
+      "Keep your data safe!": "Mantenha seus dados seguros!",
+      "Email": "Email",
+      "Password": "Senha",
+      "Login": "Entrar",
+      "Forgot password?": "Esqueceu a senha?",
+      "Don't have an account?": "Não tem uma conta?",
+      "Register!": "Registre-se!",
+      "Confirm Password": "Confirme a senha",
+      "SignUp": "Cadastrar",
+      "Invalid data": "Dados inválidos.",
+      "Email already used": "Email já utilizado.",
+      "Different passwords": "Senhas diferentes.",
+      "Password must be at least 8 characters long": "Senha deve ter pelo menos 8 digitos."
+    },
     "Search message...": "Pesquise a mensagem...",
-    "Input the username":"Nome do usuário#0000",
-    "No chat yet...":"Sem conversa aqui...",
-    "Search for any contact or add a new one!":"Busque um amigo na barra de pesquisa ou adicione um novo!"
+    "Input the username": "Nome do usuário#0000",
+    "No chat yet...": "Sem conversa aqui...",
+    "Search for any contact or add a new one!": "Busque um amigo na barra de pesquisa ou adicione um novo!",
+
+    "Alert": {
+      "Title": {
+        "Error": "Error!"
+      },
+      "Description": {
+        "No connection": "No connection."
+      }
+    }
   }
 }
