@@ -21,6 +21,7 @@ const ChatInput: React.FC<IProps> = ({ idChat }) => {
 
 
   const onSend = () => {
+    setMessageText('')
     onSendMessage({ message: messageText, idChat })
   }
 
