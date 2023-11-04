@@ -27,7 +27,7 @@ const SignIn: React.FC = () => {
   const verifyPassword = () => {
     if (password.length < 8) {
       setPassword('')
-      Alert.alert('Error', t('Password must be at least 8 characters long') as string)
+      Alert.alert(t('Alerts.Title.Error'), t('Login.Password must be at least 8 characters long') as string)
       return false
     }
     return true
@@ -56,7 +56,7 @@ const SignIn: React.FC = () => {
         <Titles>
           <Title>
             <Text
-              text={t('Welcome to DevChat!')}
+              text={t('Login.Welcome to DevChat!')}
               color='primaryFont'
               size='big_18'
               weight='semibold' />
@@ -64,7 +64,7 @@ const SignIn: React.FC = () => {
 
           <Title>
             <Text
-              text={t('Keep your data safe!')}
+              text={t('Login.Keep your data safe!')}
               color='secundaryFont'
               size='normal_16'
               weight='regular' />
@@ -75,32 +75,40 @@ const SignIn: React.FC = () => {
           <LoginInput
             value={email}
             onChangeValue={setEmail}
-            placeholder={t('Email')}
+            placeholder={t('Login.Email')}
             type={'email'}
             isLogin />
           <LoginInput
             value={password}
             onChangeValue={setPassword}
-            placeholder={t('Password')}
+            placeholder={t('Login.Password')}
             type={'password'}
             isLogin={true} />
         </InputWrapper>
 
         <ButtonWrapper>
-          <Button onPress={onSignIn} text={t('Login')} type='solid' />
-          <Button onPress={onForgotPassword} text={t('Forgot password?')} type='clean' />
+          <Button 
+            onPress={onSignIn} 
+            text={t('Login.Login')} 
+            type='solid' 
+          />
+          <Button 
+            onPress={onForgotPassword} 
+            text={t('Login.Forgot password?')} 
+            type='clean' 
+          />
         </ButtonWrapper>
       </Wrapper>
 
       <HaveAccount>
         <Text
-          text={t("Don't have an account?")}
+          text={t("Login.Don't have an account?")}
           color={'secundaryFont'}
           size={'small_14'}
           weight={'regular'} />
         <Register onPress={() => { navigate('signUp') }}>
           <Text
-            text={t('Register!')}
+            text={t('Login.Register!')}
             color={'primaryColor'}
             size={'small_14'}
             weight={'bold'} />

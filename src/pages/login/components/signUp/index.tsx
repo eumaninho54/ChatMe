@@ -32,13 +32,19 @@ const SignUp: React.FC = () => {
     if (password != confirmPassword) {
       setPassword('')
       setConfirmPassword('')
-      Alert.alert('Error', t('Different passwords') as string)
+      Alert.alert(
+        t('Alert.Title.Error'), 
+        t('Login.Different passwords') as string,
+      )
       return false
     }
     if (password.length < 8) {
       setPassword('')
       setConfirmPassword('')
-      Alert.alert('Error', t('Password must be at least 8 characters long') as string)
+      Alert.alert(
+        t('Alert.Title.Error'), 
+        t('Login.Password must be at least 8 characters long') as string
+      )
       return false
     }
     return true
@@ -73,7 +79,7 @@ const SignUp: React.FC = () => {
         <Titles>
           <Title>
             <Text
-              text={t('Welcome to DevChat!')}
+              text={t('Login.Welcome to DevChat!')}
               color='primaryFont'
               size='big_18'
               weight='semibold' />
@@ -81,7 +87,7 @@ const SignUp: React.FC = () => {
 
           <Title>
             <Text
-              text={t('Keep your data safe!')}
+              text={t('Login.Keep your data safe!')}
               color='secundaryFont'
               size='normal_16'
               weight='regular' />
@@ -92,26 +98,30 @@ const SignUp: React.FC = () => {
           <LoginInput
             value={email}
             onChangeValue={setEmail}
-            placeholder={t('Email')}
+            placeholder={t('Login.Email')}
             type={'email'} />
 
           <PasswordWrapper>
             <LoginInput
               value={password}
               onChangeValue={setPassword}
-              placeholder={t('Password')}
+              placeholder={t('Login.Password')}
               type={'password'} />
 
             <LoginInput
               value={confirmPassword}
               onChangeValue={setConfirmPassword}
-              placeholder={t('Confirm Password')}
+              placeholder={t('Login.Confirm Password')}
               type={'password'} />
           </PasswordWrapper>
         </InputWrapper>
 
         <ButtonWrapper>
-          <Button onPress={onSignUp} text={t('SignUp')} type='solid' />
+          <Button 
+            onPress={onSignUp} 
+            text={t('Login.SignUp')} 
+            type='solid' 
+          />
         </ButtonWrapper>
 
       </Wrapper>
