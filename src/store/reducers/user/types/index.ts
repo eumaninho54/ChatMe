@@ -4,6 +4,7 @@ export type IUser = {
   name: string
   email: string
   auth: boolean
+  isActive: boolean
   accessToken: string
   refreshToken: string
 }
