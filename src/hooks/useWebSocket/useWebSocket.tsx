@@ -50,5 +50,21 @@ export const useWebSocket = () => {
     })
   }
 
-  return { chatsConnect, sendMessage }
+  const onReadMessage = (props: IReadMessage) => {
+    socket.emit('readMessage', {
+      idUser: user.id,
+      idChat: props.idChat,
+      messagesId: props.messagesId
+    })
+  }
+
+  const onReceiveMessage = (props: IReceiveMessage) => {
+    socket.emit('receiveMessage', {
+      idUser: user.id,
+      idChat: props.idChat,
+      messageId: props.message.id,
+    })
+  }
+
+  return { chatsConnect, onSendMessage, onReadMessage }
 }
