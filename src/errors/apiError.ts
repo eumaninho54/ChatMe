@@ -5,17 +5,30 @@ import { reactotron } from "../config/reactotron"
 
 type Iprops = {
   err: AxiosError
-  callbackApiError?: (() => {}) | (() => void)
+  callbackApiError?: () => void
   t: TFunction<"translation", undefined, "translation">
 }
 
 export const apiError = ({ err, callbackApiError, t }: Iprops) => {
   //Debug error
-  reactotron.log?.(err)
+  reactotron.log?.('ApiError: ', err)
 
-  if(err.code == '401'){
-    callbackApiError?.()
+  switch (err?.code) {
+    case '401':
+      callbackApiError?.()
+      return;
+
+    case null:
+      Alert.alert(
+        t('Alerts.Title.Error'), 
+        t('Alerts.Description.No connection') || ''
+      )
+      return;
+
+    default:
+      Alert.alert(
+        t('Alerts.Title.Error'), 
+        err.message || ''
+      )
   }
-
-  Alert.alert(t('Error'), t(err.message) || '')
 } 
