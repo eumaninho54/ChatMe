@@ -10,9 +10,14 @@ import { IProps } from './types';
 
 
 const Header = forwardRef<View, IProps>((props, ref) => {
-  const { id, username, avatar, isOnline } = props
-  const { goBack } = useNavigation<IStackNavigation>()
+  const { 
+    id, 
+    username, 
+    avatar, 
+    isOnline 
+  } = props
 
+  const { goBack } = useNavigation<IStackNavigation>()
 
   return (
     <Wrapper>
