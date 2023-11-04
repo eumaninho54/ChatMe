@@ -1,6 +1,6 @@
 export type IUsers = {
   id: string
-  username: string
+  name: string
   imageUrl: string
   hasFriendshipRequest: boolean
 }

@@ -36,7 +36,7 @@ const User: React.FC = () => {
   const onSearchUser = useDebouncedCallback(
     async (text: string) => {
       await new Api().searchUser({
-        username: text,
+        name: text,
         idUser: user.id
       })
         .then((req) => {
