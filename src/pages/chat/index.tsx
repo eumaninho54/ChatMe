@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, KeyboardAvoidingView, Platform, View } from 'react-native';
 import Check from '../../components/check';
 import Text from '../../components/text';
 import { IChatRouteType, IStackNavigation } from '../../routes/types';
@@ -93,14 +93,17 @@ const Chat: React.FC = () => {
         <MessagesWrapper>
           <FlatList
             data={messages}
-            style={{ padding: 16 }}
+            style={{ paddingHorizontal: 16 }}
+            contentContainerStyle={{ paddingVertical: 16 }}
             renderItem={renderItem}
             keyExtractor={(item, index) => item.id + String(index)}
             inverted />
         </MessagesWrapper>
 
-        <ChatInput idChat={chat.idChat} />
       </Wrapper>
+        <KeyboardAvoidingView behavior='padding' enabled={Platform.OS == 'ios'}>
+          <ChatInput idChat={chat.idChat} />
+        </KeyboardAvoidingView>
     </SafeAreaView>
   )
 }
