@@ -1,6 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Header from './components/header';
-import { AvatarWrapper, CheckWrapper, FooterInfoWrapper, HeaderInfoWrapper, InfoWrapper, ItemSeparator, LinearGradient, LinearGradientWrapper, MaskedView, MessageWrapper, NotReadWrapper, RenderItemWrapper, SafeAreaView, UsernameWrapper } from './styles';
+import { 
+  AvatarWrapper, 
+  CheckWrapper, 
+  FooterInfoWrapper, 
+  HeaderInfoWrapper, 
+  InfoWrapper, 
+  ItemSeparator, 
+  LinearGradient, 
+  LinearGradientWrapper, 
+  MaskedView, 
+  MessageWrapper, 
+  NotReadWrapper, 
+  RenderItemWrapper, 
+  SafeAreaView, 
+  UsernameWrapper 
+} from './styles';
 import Empty from '../../components/empty';
 import DownArrow from '../../assets/arrow/arrow.png'
 import { useTranslation } from 'react-i18next';
@@ -18,24 +33,34 @@ import { useNavigation } from '@react-navigation/native';
 import { IStackNavigation } from '../../routes/types';
 import Check from '../../components/check';
 import { useWebSocket } from '../../hooks/useWebSocket/useWebSocket';
-import { IAllChat } from '../../services/api/types';
 import '../../services/websockets'
 import { formatDate } from '../../utils/formatDate';
 
 
 const Home: React.FC = () => {
   const { t, i18n } = useTranslation()
+  const { navigate } = useNavigation<IStackNavigation>()
+  const theme = useContext<ITheme>(ThemeContext)
   const { chatsConnect } = useWebSocket()
   const user = useAppSelector((store) => store.user)
-  const theme = useContext<ITheme>(ThemeContext)
-  const { navigate } = useNavigation<IStackNavigation>()
-  const [searchValue, setSearchValue] = useState('')
-  const messages = useAppSelector((store) => store.messages)
+  const chats = useAppSelector((store) => store.messages)
   const dispatch = useAppDispatch()
+  const [searchValue, setSearchValue] = useState('')
+  const [refreshing, setRefreshing] = useState(false)
 
 
   const callbackApiError = () => {
     dispatch(exitUser())
+  }
+
+  const onPressChat = (chatTitle: string, chatAvatar: string, index: number) => {
+    navigate('chat', { 
+      chat: {
+        ...chats[index],
+        icon: chatAvatar,
+        name: chatTitle
+      }
+    })
   }
 
   const renderItem = ({ item, index }: { item: IChat, index: number }) => {
@@ -49,11 +74,7 @@ const Home: React.FC = () => {
 
     return (
       <RenderItemWrapper
-        onPress={() => navigate('chat', { messagesChat: {
-          ...messages[index],
-          icon: chatAvatar,
-          name: chatTitle
-        } })}>
+        onPress={() => onPressChat(chatTitle, chatAvatar, index)}>
         <AvatarWrapper>
           <Avatar source={{ uri: chatAvatar }} />
         </AvatarWrapper>
@@ -69,19 +90,24 @@ const Home: React.FC = () => {
                 numberOfLines={1} />
             </UsernameWrapper>
 
-            <Text
-              text={formatDate(item.messages[0].createdAt)}
-              color='secundaryFont'
-              size='normal_16'
-              weight='regular' />
+            {item?.messages?.[0]?.createdAt
+              ?
+              <Text
+                text={formatDate(item?.messages?.[0].createdAt)}
+                color='secundaryFont'
+                size='normal_16'
+                weight='regular' 
+              />
+              : null
+            }
           </HeaderInfoWrapper>
 
           <FooterInfoWrapper>
-            {item.messages[0]
+            {item?.messages?.[0]
               ?
               <MessageWrapper>
                 <CheckWrapper>
-                  <Check message={item.messages[0]} />
+                  <Check message={item?.messages?.[0]} users={item.users}/>
                 </CheckWrapper>
 
                 <Text
@@ -98,7 +124,10 @@ const Home: React.FC = () => {
               ?
               <NotReadWrapper>
                 <Text
-                  text={item.notRead >= 20 ? `${item.notRead}+` : String(item.notRead)}
+                  text={item.notRead >= 20 
+                    ? `${item.notRead}+` 
+                    : String(item.notRead)
+                  }
                   color='white'
                   size='small_14'
                   weight='semibold' />
@@ -111,11 +140,22 @@ const Home: React.FC = () => {
     )
   }
 
+  const handleOnRefresh = () => {
+    setRefreshing(true)
+    dispatch(getAllThunk({ idUser: user.id }))
+      .unwrap()
+      .catch((err) => apiError({ err, t, callbackApiError }))
+      .then(() => {
+        chatsConnect(chats as IChat[])
+        setRefreshing(false)
+      })
+  }
+  
   useEffect(() => {
     dispatch(getAllThunk({ idUser: user.id }))
       .unwrap()
       .catch((err) => apiError({ err, t, callbackApiError }))
-      .then((chats) => chatsConnect(chats as IAllChat[]))
+      .then((chats) => chatsConnect(chats as IChat[]))
   }, [])
 
   return (
@@ -124,7 +164,7 @@ const Home: React.FC = () => {
         searchValue={searchValue}
         setSearchValue={setSearchValue} />
 
-      {messages.length == 0
+      {chats.length == 0
         ?
         <Empty
           title={t('No chat yet...')}
@@ -146,8 +186,12 @@ const Home: React.FC = () => {
             </LinearGradientWrapper>
           }>
           <FlatList
-            data={messages}
+            data={chats}
+            extraData={[...chats]}
+            refreshing={refreshing}
+            onRefresh={handleOnRefresh}
             renderItem={renderItem}
+            //keyExtractor={(item) => item.idChat}
             ItemSeparatorComponent={() => <ItemSeparator />}
             contentContainerStyle={{ paddingVertical: 20 }}
             showsVerticalScrollIndicator={false} />
