@@ -1,20 +1,27 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Animated, View } from 'react-native';
+import { Animated } from 'react-native';
 import BaseInput from '../../../../components/inputs/baseInput';
-import { ButtonsGroup, ButtonsWrapper, IconWrapper, InputWrapper, SendGroup, Wrapper } from './styles';
+import { 
+  ButtonsGroup, 
+  ButtonsWrapper, 
+  IconWrapper, 
+  InputWrapper, 
+  SendGroup, 
+  Wrapper 
+} from './styles';
 import Icon from '../../../../components/icon';
 import { useWebSocket } from '../../../../hooks/useWebSocket/useWebSocket';
 import { IProps } from './types';
 
 
 const ChatInput: React.FC<IProps> = ({ idChat }) => {
-  const { sendMessage } = useWebSocket()
+  const { onSendMessage } = useWebSocket()
   const [messageText, setMessageText] = useState('')
   const buttonsWidth = useRef(new Animated.Value(100)).current
 
 
   const onSend = () => {
-    sendMessage({ message: messageText, idChat })
+    onSendMessage({ message: messageText, idChat })
   }
 
   const sendOpacity = buttonsWidth.interpolate({
