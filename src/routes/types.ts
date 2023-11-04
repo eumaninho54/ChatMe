@@ -8,7 +8,7 @@ export type NativeStackParamList = {
   signUp: undefined;
   tab: undefined;
   chat: {
-    messagesChat: IChat;
+    chat: IChat;
   };
 };
 
