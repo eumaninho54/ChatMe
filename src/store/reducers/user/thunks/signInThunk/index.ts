@@ -6,6 +6,7 @@ import {Api} from '../../../../../services/api';
 import {IUser} from '../../types';
 import axios from 'axios';
 import {IProps} from './types';
+import {reactotron} from '../../../../../config/reactotron';
 
 export const signInThunk = createAsyncThunk('signIn', async (props: IProps) => {
   try {
@@ -15,6 +16,7 @@ export const signInThunk = createAsyncThunk('signIn', async (props: IProps) => {
 
     return req;
   } catch (err) {
+    reactotron.log(err);
     if (axios.isAxiosError(err)) {
       throw err.response?.data['message'];
     }
