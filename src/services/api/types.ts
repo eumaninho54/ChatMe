@@ -59,24 +59,6 @@ export type allChatProps = {
   idUser: string
 }
 
-export type IAllChat = {
-  idChat: string;
-  users: IUser[]
-  name?: string;
-  icon?: string;
-  messages: {
-    id: string;
-    senderId: string;
-    message: string;
-    isReadBy: string[];
-    isReceivedBy: string[];
-    createdAt: Date;
-  }[];
-  notRead: number;
-  isGroup: boolean;
-  isOnline: boolean;
-}
-
 export type ITokens = {
   accessToken: string
   refreshToken: string

@@ -1,6 +1,18 @@
 import axios, { AxiosError } from 'axios';
-import { GetUserProps, IAuthUser, IGetUser, INewUser, NewUserProps, SearchUserProps, ISearchUser, sendFriendshipProps, ISendFriendship, allChatProps, IAllChat } from './types';
+import { 
+  GetUserProps, 
+  IAuthUser, 
+  IGetUser, 
+  INewUser, 
+  NewUserProps, 
+  SearchUserProps, 
+  ISearchUser, 
+  sendFriendshipProps, 
+  ISendFriendship, 
+  allChatProps
+} from './types';
 import { BASE_URL } from '@env'
+import { IChat } from '../../store/reducers/messages/types';
 
 
 export class Api {
@@ -96,7 +108,7 @@ export class Api {
 
   async allChat({ idUser }: allChatProps){
     const req = await axios
-      .request<IAllChat[]>({
+      .request<IChat[]>({
         method: 'get',
         url: this.baseUrl + '/messages/',
         params: {
