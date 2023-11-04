@@ -1,21 +1,25 @@
-import React, { useEffect } from 'react';
-import { Platform, View } from 'react-native';
+import React, { useState } from 'react';
 import { socket } from '../../services/websockets';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { IOnMessage, ISendMessage } from './types';
-import { IAllChat } from '../../services/api/types';
-import { IChat, IMessages } from '../../store/reducers/messages/types';
-import { addMessage } from '../../store/reducers/messages'
-import { reactotron } from '../../config/reactotron';
+import { 
+  IOnNewMessage, 
+  IOnEditMessage, 
+  IReadMessage, 
+  ISendMessage, 
+  IReceiveMessage 
+} from './types';
+import { IChat } from '../../store/reducers/messages/types';
+import { addMessage, editMessage } from '../../store/reducers/messages'
 
 
 export const useWebSocket = () => {
   const user = useAppSelector((store) => store.user)
   const messages = useAppSelector((store) => store.messages)
   const dispatch = useAppDispatch()
+  const [isConnected, setIsConnected] = useState(false)
   
-  const chatsConnect = (chats: IAllChat[]) => {
-    if (chats.length > 0) {
+  const chatsConnect = (chats: IChat[]) => {
+    if (chats.length > 0 && !isConnected) {
       const roomsId = chats.map((chat) => chat.idChat)
 
       socket.emit('chat', {
@@ -24,18 +28,21 @@ export const useWebSocket = () => {
         username: user.name
       })
 
-      socket.on('message', (data: IOnMessage) => {
-        dispatch(addMessage(data))
-
-        reactotron.log?.(data)
-        
-        console.log(data, 'ON HERE', Platform.OS)
+      socket.on('newMessage', (data: IOnNewMessage) => {
+        dispatch(addMessage({...data, userId: user.id}))
+        onReceiveMessage(data)
       })
+
+      socket.on('editMessage', (data: IOnEditMessage) => {
+        dispatch(editMessage(data))
+      })
+
+      setIsConnected(true)
     }
   }
 
-  const sendMessage = (props: ISendMessage) => {
-    socket.emit('message', {
+  const onSendMessage = (props: ISendMessage) => {
+    socket.emit('newMessage', {
       idUser: user.id,
       idChat: props.idChat,
       message: props.message,
