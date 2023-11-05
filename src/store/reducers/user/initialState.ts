@@ -2,7 +2,9 @@ import { IUser } from "./types";
 
 export const initialState: IUser = {
   id: '',
-  username: '',
+  name: '',
+  imageUrl: '',
+  isActive: false,
   email: '',  
   auth: false,
   accessToken: '',
