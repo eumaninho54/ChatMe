@@ -35,6 +35,7 @@ import Check from '../../components/check';
 import { useWebSocket } from '../../hooks/useWebSocket/useWebSocket';
 import '../../services/websockets'
 import { formatDate } from '../../utils/formatDate';
+import OneSignal from 'react-native-onesignal';
 
 
 const Home: React.FC = () => {
@@ -152,6 +153,8 @@ const Home: React.FC = () => {
   }
   
   useEffect(() => {
+    OneSignal.setExternalUserId(user.id);
+
     dispatch(getAllThunk({ idUser: user.id }))
       .unwrap()
       .catch((err) => apiError({ err, t, callbackApiError }))

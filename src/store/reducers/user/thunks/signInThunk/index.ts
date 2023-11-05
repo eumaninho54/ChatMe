@@ -11,12 +11,11 @@ import {reactotron} from '../../../../../config/reactotron';
 export const signInThunk = createAsyncThunk('signIn', async (props: IProps) => {
   try {
     const req = await new Api().getUser(props);
-
     await AsyncStorage.setItem('refreshToken', req.refreshToken);
 
     return req;
   } catch (err) {
-    reactotron.log(err);
+    reactotron.log?.(err);
     if (axios.isAxiosError(err)) {
       throw err.response?.data['message'];
     }
@@ -27,7 +26,7 @@ export const signInThunk = createAsyncThunk('signIn', async (props: IProps) => {
 export const signInBuilder = (builder: ActionReducerMapBuilder<IUser>) => {
   builder
     .addCase(signInThunk.fulfilled, (state, action) => {
-      return action.payload;
+      return { ...action.payload, isActive: true };
     })
 
     .addCase(signInThunk.rejected, (state, action) => {
